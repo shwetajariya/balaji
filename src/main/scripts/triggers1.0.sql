@@ -1,4 +1,4 @@
-USE sms;
+USE balaji;
 
 -- drop trigger insert_contact_trigger;
 -- drop trigger update_contact_trigger;

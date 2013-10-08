@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.sur.balaji.Designation" table="Designation" catalog="sms">
+    <class name="com.sur.balaji.model.Designation" table="Designation" catalog="balaji">
         <id name="designationId" type="java.lang.Long">
             <column name="designationId" />
             <generator class="identity" />
@@ -18,7 +18,7 @@
             <key>
                 <column name="designationId" />
             </key>
-            <one-to-many class="com.sur.balaji.Contact" />
+            <one-to-many class="com.sur.balaji.model.Contact" />
         </set>
     </class>
 </hibernate-mapping>

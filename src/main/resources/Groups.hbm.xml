@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.sur.balaji.Groups" table="Groups" catalog="sms">
+    <class name="com.sur.balaji.model.Groups" table="Groups" catalog="balaji">
         <id name="groupId" type="java.lang.Long">
             <column name="groupId" />
             <generator class="identity" />
@@ -15,7 +15,7 @@
             <key>
                 <column name="groupId" />
             </key>
-            <one-to-many class="com.sur.balaji.ContactGroupMapping" />
+            <one-to-many class="com.sur.balaji.model.ContactGroupMapping" />
         </set>
     </class>
 </hibernate-mapping>

@@ -3,8 +3,8 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.sur.balaji.MessageStatus" table="MessageStatus" catalog="sms">
-        <composite-id name="id" class="com.sur.balaji.MessageStatusId">
+    <class name="com.sur.balaji.model.MessageStatus" table="MessageStatus" catalog="balaji">
+        <composite-id name="id" class="com.sur.balaji.model.MessageStatusId">
             <key-property name="messageLogId" type="java.lang.Long">
                 <column name="messageLogId" />
             </key-property>
@@ -18,10 +18,10 @@
                 <column name="statusCode" />
             </key-property>
         </composite-id>
-        <many-to-one name="contact" class="com.sur.balaji.Contact" update="false" insert="false" fetch="select">
+        <many-to-one name="contact" class="com.sur.balaji.model.Contact" update="false" insert="false" fetch="select">
             <column name="contactId" />
         </many-to-one>
-        <many-to-one name="messageLog" class="com.sur.balaji.MessageLog" update="false" insert="false" fetch="select">
+        <many-to-one name="messageLog" class="com.sur.balaji.model.MessageLog" update="false" insert="false" fetch="select">
             <column name="messageLogId" />
         </many-to-one>
     </class>

@@ -3,24 +3,24 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.sur.balaji.Contact" table="Contact" catalog="sms">
+    <class name="com.sur.balaji.model.Contact" table="Contact" catalog="balaji">
         <id name="contactId" type="java.lang.Long">
             <column name="contactId" />
             <generator class="identity" />
         </id>
-        <many-to-one name="department" class="com.sur.balaji.Department" fetch="select">
+        <many-to-one name="department" class="com.sur.balaji.model.Department" fetch="select">
             <column name="departmentId" />
         </many-to-one>
-        <many-to-one name="company" class="com.sur.balaji.Company" fetch="select">
+        <many-to-one name="company" class="com.sur.balaji.model.Company" fetch="select">
             <column name="companyId" />
         </many-to-one>
-        <many-to-one name="designation" class="com.sur.balaji.Designation" fetch="select">
+        <many-to-one name="designation" class="com.sur.balaji.model.Designation" fetch="select">
             <column name="designationId" />
         </many-to-one>
-        <many-to-one name="user" class="com.sur.balaji.User" fetch="select">
+        <many-to-one name="user" class="com.sur.balaji.model.User" fetch="select">
             <column name="modifierId" />
         </many-to-one>
-        <many-to-one name="section" class="com.sur.balaji.Section" fetch="select">
+        <many-to-one name="section" class="com.sur.balaji.model.Section" fetch="select">
             <column name="sectionId" />
         </many-to-one>
         <property name="employeeId" type="string">
@@ -54,13 +54,13 @@
             <key>
                 <column name="contactId" />
             </key>
-            <one-to-many class="com.sur.balaji.MessageStatus" />
+            <one-to-many class="com.sur.balaji.model.MessageStatus" />
         </set>
         <set name="contactGroupMappings" table="ContactGroupMapping" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="contactId" />
             </key>
-            <one-to-many class="com.sur.balaji.ContactGroupMapping" />
+            <one-to-many class="com.sur.balaji.model.ContactGroupMapping" />
         </set>
     </class>
 </hibernate-mapping>

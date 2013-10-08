@@ -3,8 +3,8 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.sur.balaji.ContactAudit" table="ContactAudit" catalog="sms">
-        <composite-id name="id" class="com.sur.balaji.ContactAuditId">
+    <class name="com.sur.balaji.model.ContactAudit" table="ContactAudit" catalog="balaji">
+        <composite-id name="id" class="com.sur.balaji.model.ContactAuditId">
             <key-property name="operation" type="string">
                 <column name="operation" length="15" />
             </key-property>

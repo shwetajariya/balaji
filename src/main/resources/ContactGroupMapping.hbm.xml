@@ -3,8 +3,8 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.sur.balaji.ContactGroupMapping" table="ContactGroupMapping" catalog="sms">
-        <composite-id name="id" class="com.sur.balaji.ContactGroupMappingId">
+    <class name="com.sur.balaji.model.ContactGroupMapping" table="ContactGroupMapping" catalog="balaji">
+        <composite-id name="id" class="com.sur.balaji.model.ContactGroupMappingId">
             <key-property name="contactId" type="java.lang.Long">
                 <column name="contactId" />
             </key-property>
@@ -12,10 +12,10 @@
                 <column name="groupId" />
             </key-property>
         </composite-id>
-        <many-to-one name="groups" class="com.sur.balaji.Groups" update="false" insert="false" fetch="select">
+        <many-to-one name="groups" class="com.sur.balaji.model.Groups" update="false" insert="false" fetch="select">
             <column name="groupId" />
         </many-to-one>
-        <many-to-one name="contact" class="com.sur.balaji.Contact" update="false" insert="false" fetch="select">
+        <many-to-one name="contact" class="com.sur.balaji.model.Contact" update="false" insert="false" fetch="select">
             <column name="contactId" />
         </many-to-one>
     </class>
