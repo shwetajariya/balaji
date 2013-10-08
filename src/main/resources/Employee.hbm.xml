@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.sur.balaji.Employee" table="Employee" catalog="sms">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
+        <property name="area" type="string">
+            <column name="area" />
+        </property>
+        <property name="company" type="string">
+            <column name="company" not-null="true" />
+        </property>
+        <property name="department" type="string">
+            <column name="department" not-null="true" />
+        </property>
+        <property name="designation" type="string">
+            <column name="designation" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" />
+        </property>
+        <property name="employeeNumber" type="int">
+            <column name="employeeNumber" not-null="true" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="firstName" not-null="true" />
+        </property>
+        <property name="ipContactNumber" type="string">
+            <column name="ipContactNumber" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="lastName" not-null="true" />
+        </property>
+        <property name="mobileNumber" type="string">
+            <column name="mobileNumber" not-null="true" />
+        </property>
+        <property name="priority" type="string">
+            <column name="priority" not-null="true" />
+        </property>
+        <property name="section" type="string">
+            <column name="section" />
+        </property>
+    </class>
+</hibernate-mapping>

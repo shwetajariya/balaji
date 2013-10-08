@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.sur.balaji.Groups" table="Groups" catalog="sms">
+        <id name="groupId" type="java.lang.Long">
+            <column name="groupId" />
+            <generator class="identity" />
+        </id>
+        <property name="groupName" type="string">
+            <column name="groupName" length="25" />
+        </property>
+        <set name="contactGroupMappings" table="ContactGroupMapping" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="groupId" />
+            </key>
+            <one-to-many class="com.sur.balaji.ContactGroupMapping" />
+        </set>
+    </class>
+</hibernate-mapping>

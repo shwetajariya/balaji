@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.sur.balaji.Section" table="Section" catalog="sms">
+        <id name="sectionId" type="java.lang.Long">
+            <column name="sectionId" />
+            <generator class="identity" />
+        </id>
+        <property name="sectionName" type="string">
+            <column name="sectionName" length="25" />
+        </property>
+        <set name="contacts" table="Contact" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sectionId" />
+            </key>
+            <one-to-many class="com.sur.balaji.Contact" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.sur.balaji.MessageLog" table="MessageLog" catalog="sms">
+        <id name="messageLogId" type="java.lang.Long">
+            <column name="messageLogId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="com.sur.balaji.User" fetch="select">
+            <column name="userId" />
+        </many-to-one>
+        <property name="messageText" type="string">
+            <column name="messageText" />
+        </property>
+        <property name="timeoutMilliSec" type="string">
+            <column name="timeoutMilliSec" length="16777215" />
+        </property>
+        <property name="startTime" type="timestamp">
+            <column name="startTime" length="19" not-null="true" />
+        </property>
+        <property name="endTime" type="timestamp">
+            <column name="endTime" length="19" not-null="true" />
+        </property>
+        <set name="messageStatuses" table="MessageStatus" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="messageLogId" />
+            </key>
+            <one-to-many class="com.sur.balaji.MessageStatus" />
+        </set>
+    </class>
+</hibernate-mapping>

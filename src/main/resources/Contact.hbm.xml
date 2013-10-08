@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.sur.balaji.Contact" table="Contact" catalog="sms">
+        <id name="contactId" type="java.lang.Long">
+            <column name="contactId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="department" class="com.sur.balaji.Department" fetch="select">
+            <column name="departmentId" />
+        </many-to-one>
+        <many-to-one name="company" class="com.sur.balaji.Company" fetch="select">
+            <column name="companyId" />
+        </many-to-one>
+        <many-to-one name="designation" class="com.sur.balaji.Designation" fetch="select">
+            <column name="designationId" />
+        </many-to-one>
+        <many-to-one name="user" class="com.sur.balaji.User" fetch="select">
+            <column name="modifierId" />
+        </many-to-one>
+        <many-to-one name="section" class="com.sur.balaji.Section" fetch="select">
+            <column name="sectionId" />
+        </many-to-one>
+        <property name="employeeId" type="string">
+            <column name="employeeId" length="25" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="firstName" length="25" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="lastName" length="25" />
+        </property>
+        <property name="priority" type="java.lang.Integer">
+            <column name="priority" />
+        </property>
+        <property name="officePhoneNumber" type="string">
+            <column name="officePhoneNumber" length="15" />
+        </property>
+        <property name="mobileNumber" type="string">
+            <column name="mobileNumber" length="15" />
+        </property>
+        <property name="residencePhoneNumber" type="string">
+            <column name="residencePhoneNumber" length="15" />
+        </property>
+        <property name="emailAddress" type="string">
+            <column name="emailAddress" length="50" />
+        </property>
+        <property name="modifiedOn" type="timestamp">
+            <column name="modifiedOn" length="19" not-null="true" />
+        </property>
+        <set name="messageStatuses" table="MessageStatus" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="contactId" />
+            </key>
+            <one-to-many class="com.sur.balaji.MessageStatus" />
+        </set>
+        <set name="contactGroupMappings" table="ContactGroupMapping" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="contactId" />
+            </key>
+            <one-to-many class="com.sur.balaji.ContactGroupMapping" />
+        </set>
+    </class>
+</hibernate-mapping>
