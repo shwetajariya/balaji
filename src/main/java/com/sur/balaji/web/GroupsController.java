@@ -1,5 +1,6 @@
 package com.sur.balaji.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sur.balaji.dao.GroupsHome;
+import com.sur.balaji.model.Groups;
 import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Groups;
+import com.sur.balaji.model.JSONResult.Option;
+
 import common.Status;
 
 @Controller
@@ -96,6 +100,28 @@ public class GroupsController {
 		}
 
 		logger.info("deleteGroups() returning " + jsonResult);
+		return jsonResult;
+	}
+	
+	@RequestMapping(value = "/groupsOptions", method = RequestMethod.POST)
+	public @ResponseBody JSONResult getGroupsOptions() {
+		JSONResult jsonResult = new JSONResult();
+		try {
+			logger.info("getGroupsOptions() fetching all groupss");
+			Groups groups = new Groups();
+			List<Groups> groupsList = groupsHome.findByExample(groups);
+			List<Option> options = new ArrayList<Option>();
+			for(Groups dept : groupsList) {
+				Option option = new Option(dept.getGroupName(), dept.getGroupId());
+				options.add(option);
+			}
+			jsonResult.setResult(Status.OK);
+			jsonResult.setOptions(options);
+		} catch (Exception ex) {
+			logger.info("getGroupsOptions() error: " + ex);
+			jsonResult.setResult(Status.ERROR);
+		}
+		logger.info("getGroupsOptions() returning " + jsonResult);
 		return jsonResult;
 	}
 	
