@@ -4,6 +4,7 @@ package com.sur.balaji.dao;
 
 import static org.hibernate.criterion.Example.create;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.InitialContext;
@@ -46,6 +47,7 @@ public class ContactHome {
     public void persist(Contact transientInstance) {
         log.debug("persisting Contact instance");
         try {
+        	transientInstance.setModifiedOn(new Date());
             sessionFactory.getCurrentSession().persist(transientInstance);
             log.debug("persist successful");
         }
@@ -94,6 +96,7 @@ public class ContactHome {
     public Contact merge(Contact detachedInstance) {
         log.debug("merging Contact instance");
         try {
+        	detachedInstance.setModifiedOn(new Date());
             Contact result = (Contact) sessionFactory.getCurrentSession()
                     .merge(detachedInstance);
             log.debug("merge successful");
