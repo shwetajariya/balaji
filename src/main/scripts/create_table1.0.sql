@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS User (
 	lastName VARCHAR(25),
 	password VARCHAR(25),
 	emailAddress VARCHAR(50),
-	lastLogin TIMESTAMP
+	lastLogin TIMESTAMP NULL
 )ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Company (

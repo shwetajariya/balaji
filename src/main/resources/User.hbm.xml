@@ -24,15 +24,15 @@
             <column name="emailAddress" length="50" />
         </property>
         <property name="lastLogin" type="timestamp">
-            <column name="lastLogin" length="19" not-null="true" />
+            <column name="lastLogin" length="19" />
         </property>
-        <set name="contacts" table="Contact" inverse="true" lazy="true" fetch="select">
+        <set name="contacts" table="Contact" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="modifierId" />
             </key>
             <one-to-many class="com.sur.balaji.model.Contact" />
         </set>
-        <set name="messageLogs" table="MessageLog" inverse="true" lazy="true" fetch="select">
+        <set name="messageLogs" table="MessageLog" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="userId" />
             </key>

@@ -4,6 +4,7 @@ package com.sur.balaji.dao;
 
 import static org.hibernate.criterion.Example.create;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.InitialContext;
@@ -12,6 +13,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sur.balaji.model.User;
 
@@ -20,11 +24,15 @@ import com.sur.balaji.model.User;
  * @see com.sur.balaji.dao.User
  * @author Hibernate Tools
  */
-public class UserHome {
+@Repository("userHome")
+@Transactional
+public class UserHome extends HomeBase{
 
     private static final Log log = LogFactory.getLog(UserHome.class);
 
-    private final SessionFactory sessionFactory = getSessionFactory();
+    //private final SessionFactory sessionFactory = getSessionFactory1();
+    @Autowired
+    private SessionFactory sessionFactory;
     
     protected SessionFactory getSessionFactory() {
         try {
@@ -39,6 +47,10 @@ public class UserHome {
     public void persist(User transientInstance) {
         log.debug("persisting User instance");
         try {
+        	if(transientInstance.getLastLogin() == null){
+        		Date lastLogin = new Date();
+        		transientInstance.setLastLogin(lastLogin);
+        	}
             sessionFactory.getCurrentSession().persist(transientInstance);
             log.debug("persist successful");
         }
@@ -102,7 +114,7 @@ public class UserHome {
         log.debug("getting User instance with id: " + id);
         try {
             User instance = (User) sessionFactory.getCurrentSession()
-                    .get("com.sur.balaji.dao.User", id);
+                    .get("com.sur.balaji.model.User", id);
             if (instance==null) {
                 log.debug("get successful, no instance found");
             }
@@ -121,7 +133,7 @@ public class UserHome {
         log.debug("finding User instance by example");
         try {
             List<User> results = (List<User>) sessionFactory.getCurrentSession()
-                    .createCriteria("com.sur.balaji.dao.User")
+                    .createCriteria("com.sur.balaji.model.User")
                     .add( create(instance) )
             .list();
             log.debug("find by example successful, result size: " + results.size());
