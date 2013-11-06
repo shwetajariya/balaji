@@ -12,6 +12,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sur.balaji.model.Designation;
 
@@ -20,11 +23,15 @@ import com.sur.balaji.model.Designation;
  * @see com.sur.balaji.dao.Designation
  * @author Hibernate Tools
  */
+@Repository("designationHome")
+@Transactional
 public class DesignationHome {
 
     private static final Log log = LogFactory.getLog(DesignationHome.class);
 
-    private final SessionFactory sessionFactory = getSessionFactory();
+    //private final SessionFactory sessionFactory = getSessionFactory();
+    @Autowired
+    private SessionFactory sessionFactory;
     
     protected SessionFactory getSessionFactory() {
         try {
@@ -102,7 +109,7 @@ public class DesignationHome {
         log.debug("getting Designation instance with id: " + id);
         try {
             Designation instance = (Designation) sessionFactory.getCurrentSession()
-                    .get("com.sur.balaji.dao.Designation", id);
+                    .get("com.sur.balaji.model.Designation", id);
             if (instance==null) {
                 log.debug("get successful, no instance found");
             }
@@ -121,7 +128,7 @@ public class DesignationHome {
         log.debug("finding Designation instance by example");
         try {
             List<Designation> results = (List<Designation>) sessionFactory.getCurrentSession()
-                    .createCriteria("com.sur.balaji.dao.Designation")
+                    .createCriteria("com.sur.balaji.model.Designation")
                     .add( create(instance) )
             .list();
             log.debug("find by example successful, result size: " + results.size());
