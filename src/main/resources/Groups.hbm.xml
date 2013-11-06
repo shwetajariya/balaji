@@ -11,7 +11,7 @@
         <property name="groupName" type="string">
             <column name="groupName" length="25" />
         </property>
-        <set name="contactGroupMappings" table="ContactGroupMapping" inverse="true" lazy="true" fetch="select">
+        <set name="contactGroupMappings" table="ContactGroupMapping" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="groupId" />
             </key>

@@ -12,6 +12,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sur.balaji.model.Department;
 
@@ -20,11 +23,15 @@ import com.sur.balaji.model.Department;
  * @see com.sur.balaji.dao.Department
  * @author Hibernate Tools
  */
+@Repository("departementHome")
+@Transactional
 public class DepartmentHome {
 
     private static final Log log = LogFactory.getLog(DepartmentHome.class);
 
-    private final SessionFactory sessionFactory = getSessionFactory();
+    //private final SessionFactory sessionFactory = getSessionFactory();
+    @Autowired
+	private SessionFactory sessionFactory;
     
     protected SessionFactory getSessionFactory() {
         try {
@@ -102,7 +109,7 @@ public class DepartmentHome {
         log.debug("getting Department instance with id: " + id);
         try {
             Department instance = (Department) sessionFactory.getCurrentSession()
-                    .get("com.sur.balaji.dao.Department", id);
+                    .get("com.sur.balaji.model.Department", id);
             if (instance==null) {
                 log.debug("get successful, no instance found");
             }
@@ -121,7 +128,7 @@ public class DepartmentHome {
         log.debug("finding Department instance by example");
         try {
             List<Department> results = (List<Department>) sessionFactory.getCurrentSession()
-                    .createCriteria("com.sur.balaji.dao.Department")
+                    .createCriteria("com.sur.balaji.model.Department")
                     .add( create(instance) )
             .list();
             log.debug("find by example successful, result size: " + results.size());

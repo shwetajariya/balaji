@@ -11,7 +11,7 @@
         <property name="departmentName" type="string">
             <column name="departmentName" length="25" />
         </property>
-        <set name="contacts" table="Contact" inverse="true" lazy="true" fetch="select">
+        <set name="contacts" table="Contact" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="departmentId" />
             </key>
