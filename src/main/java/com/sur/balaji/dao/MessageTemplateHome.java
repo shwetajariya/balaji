@@ -12,6 +12,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sur.balaji.model.MessageTemplate;
 
@@ -20,11 +23,15 @@ import com.sur.balaji.model.MessageTemplate;
  * @see com.sur.balaji.dao.MessageTemplate
  * @author Hibernate Tools
  */
+@Repository("messageTemplateHome")
+@Transactional
 public class MessageTemplateHome {
 
     private static final Log log = LogFactory.getLog(MessageTemplateHome.class);
 
-    private final SessionFactory sessionFactory = getSessionFactory();
+    //private final SessionFactory sessionFactory = getSessionFactory();
+    @Autowired
+	private SessionFactory sessionFactory;
     
     protected SessionFactory getSessionFactory() {
         try {
@@ -102,7 +109,7 @@ public class MessageTemplateHome {
         log.debug("getting MessageTemplate instance with id: " + id);
         try {
             MessageTemplate instance = (MessageTemplate) sessionFactory.getCurrentSession()
-                    .get("com.sur.balaji.dao.MessageTemplate", id);
+                    .get("com.sur.balaji.model.MessageTemplate", id);
             if (instance==null) {
                 log.debug("get successful, no instance found");
             }
@@ -121,7 +128,7 @@ public class MessageTemplateHome {
         log.debug("finding MessageTemplate instance by example");
         try {
             List<MessageTemplate> results = (List<MessageTemplate>) sessionFactory.getCurrentSession()
-                    .createCriteria("com.sur.balaji.dao.MessageTemplate")
+                    .createCriteria("com.sur.balaji.model.MessageTemplate")
                     .add( create(instance) )
             .list();
             log.debug("find by example successful, result size: " + results.size());
