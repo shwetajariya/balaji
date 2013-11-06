@@ -10,10 +10,10 @@
 	            sorting: true,
 	            defaultSorting: 'Name ASC',
 	            actions: {
-	                listAction: '/balaji/user/userListByFiter',
-	                deleteAction: '/balaji/user/deleteUser',
-	                updateAction: '/balaji/user/updateUser',
-	                createAction: '/balaji/user/createUser'
+	                listAction: '<c:url value="/user/userListByFiter" />',
+	                deleteAction: '<c:url value="/user/deleteUser" />',
+	                updateAction: '<c:url value="/user/updateUser" />',
+	                createAction: '<c:url value="/user/createUser" />'
 	            },
 	            fields: {
 	                userId: {

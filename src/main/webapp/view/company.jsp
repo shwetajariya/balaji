@@ -10,10 +10,10 @@
 	            sorting: true,
 	            defaultSorting: 'Name ASC',
 	            actions: {
-	                listAction: '/balaji/company/companyListByFiter',
-	                deleteAction: '/balaji/company/deleteCompany',
-	                updateAction: '/balaji/company/updateCompany',
-	                createAction: '/balaji/company/createCompany'
+	                listAction: '<c:url value="/company/companyListByFiter" />',
+	                deleteAction: '<c:url value="/company/deleteCompany" />',
+	                updateAction: '<c:url value="/company/updateCompany" />',
+	                createAction: '<c:url value="/company/createCompany" />'
 	            },
 	            fields: {
 	                companyId: {
