@@ -12,6 +12,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sur.balaji.model.Contact;
 
@@ -20,11 +23,15 @@ import com.sur.balaji.model.Contact;
  * @see com.sur.balaji.dao.Contact
  * @author Hibernate Tools
  */
+@Repository("contactHome")
+@Transactional
 public class ContactHome {
 
     private static final Log log = LogFactory.getLog(ContactHome.class);
 
-    private final SessionFactory sessionFactory = getSessionFactory();
+    //private final SessionFactory sessionFactory = getSessionFactory();
+    @Autowired
+    private SessionFactory sessionFactory;
     
     protected SessionFactory getSessionFactory() {
         try {
@@ -102,7 +109,7 @@ public class ContactHome {
         log.debug("getting Contact instance with id: " + id);
         try {
             Contact instance = (Contact) sessionFactory.getCurrentSession()
-                    .get("com.sur.balaji.dao.Contact", id);
+                    .get("com.sur.balaji.model.Contact", id);
             if (instance==null) {
                 log.debug("get successful, no instance found");
             }
@@ -121,7 +128,7 @@ public class ContactHome {
         log.debug("finding Contact instance by example");
         try {
             List<Contact> results = (List<Contact>) sessionFactory.getCurrentSession()
-                    .createCriteria("com.sur.balaji.dao.Contact")
+                    .createCriteria("com.sur.balaji.model.Contact")
                     .add( create(instance) )
             .list();
             log.debug("find by example successful, result size: " + results.size());

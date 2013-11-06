@@ -1,5 +1,6 @@
 package com.sur.balaji.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sur.balaji.dao.DepartmentHome;
 import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Department;
+import com.sur.balaji.model.JSONResult.Option;
+
 import common.Status;
 
 @Controller
@@ -96,6 +99,28 @@ public class DepartmentController {
 		}
 
 		logger.info("deleteDepartment() returning " + jsonResult);
+		return jsonResult;
+	}
+	
+	@RequestMapping(value = "/departmentOptions", method = RequestMethod.POST)
+	public @ResponseBody JSONResult getDepartmentOptions() {
+		JSONResult jsonResult = new JSONResult();
+		try {
+			logger.info("getDepartmentOptions() fetching all departments");
+			Department department = new Department();
+			List<Department> departmentList = departmentHome.findByExample(department);
+			List<Option> options = new ArrayList<Option>();
+			for(Department dept : departmentList) {
+				Option option = new Option(dept.getDepartmentName(), dept.getDepartmentId());
+				options.add(option);
+			}
+			jsonResult.setResult(Status.OK);
+			jsonResult.setOptions(options);
+		} catch (Exception ex) {
+			logger.info("getDepartmentOptions() error: " + ex);
+			jsonResult.setResult(Status.ERROR);
+		}
+		logger.info("getDepartmentOptions() returning " + jsonResult);
 		return jsonResult;
 	}
 	

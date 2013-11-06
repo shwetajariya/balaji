@@ -1,5 +1,6 @@
 package com.sur.balaji.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sur.balaji.dao.SectionHome;
+import com.sur.balaji.model.Section;
 import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Section;
+import com.sur.balaji.model.JSONResult.Option;
+
 import common.Status;
 
 @Controller
@@ -96,6 +100,28 @@ public class SectionController {
 		}
 
 		logger.info("deleteSection() returning " + jsonResult);
+		return jsonResult;
+	}
+	
+	@RequestMapping(value = "/sectionOptions", method = RequestMethod.POST)
+	public @ResponseBody JSONResult getSectionOptions() {
+		JSONResult jsonResult = new JSONResult();
+		try {
+			logger.info("getSectionOptions() fetching all sections");
+			Section section = new Section();
+			List<Section> sectionList = sectionHome.findByExample(section);
+			List<Option> options = new ArrayList<Option>();
+			for(Section dept : sectionList) {
+				Option option = new Option(dept.getSectionName(), dept.getSectionId());
+				options.add(option);
+			}
+			jsonResult.setResult(Status.OK);
+			jsonResult.setOptions(options);
+		} catch (Exception ex) {
+			logger.info("getSectionOptions() error: " + ex);
+			jsonResult.setResult(Status.ERROR);
+		}
+		logger.info("getSectionOptions() returning " + jsonResult);
 		return jsonResult;
 	}
 	

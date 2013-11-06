@@ -1,5 +1,6 @@
 package com.sur.balaji.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sur.balaji.dao.DesignationHome;
+import com.sur.balaji.model.Designation;
 import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Designation;
+import com.sur.balaji.model.JSONResult.Option;
+
 import common.Status;
 
 @Controller
@@ -96,6 +100,28 @@ public class DesignationController {
 		}
 
 		logger.info("deleteDesignation() returning " + jsonResult);
+		return jsonResult;
+	}
+	
+	@RequestMapping(value = "/designationOptions", method = RequestMethod.POST)
+	public @ResponseBody JSONResult getDesignationOptions() {
+		JSONResult jsonResult = new JSONResult();
+		try {
+			logger.info("getDesignationOptions() fetching all designations");
+			Designation designation = new Designation();
+			List<Designation> designationList = designationHome.findByExample(designation);
+			List<Option> options = new ArrayList<Option>();
+			for(Designation dept : designationList) {
+				Option option = new Option(dept.getDesignation(), dept.getDesignationId());
+				options.add(option);
+			}
+			jsonResult.setResult(Status.OK);
+			jsonResult.setOptions(options);
+		} catch (Exception ex) {
+			logger.info("getDesignationOptions() error: " + ex);
+			jsonResult.setResult(Status.ERROR);
+		}
+		logger.info("getDesignationOptions() returning " + jsonResult);
 		return jsonResult;
 	}
 	

@@ -50,13 +50,13 @@
         <property name="modifiedOn" type="timestamp">
             <column name="modifiedOn" length="19" not-null="true" />
         </property>
-        <set name="messageStatuses" table="MessageStatus" inverse="true" lazy="true" fetch="select">
+        <set name="messageStatuses" table="MessageStatus" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="contactId" />
             </key>
             <one-to-many class="com.sur.balaji.model.MessageStatus" />
         </set>
-        <set name="contactGroupMappings" table="ContactGroupMapping" inverse="true" lazy="true" fetch="select">
+        <set name="contactGroupMappings" table="ContactGroupMapping" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="contactId" />
             </key>

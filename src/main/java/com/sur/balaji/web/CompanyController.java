@@ -1,5 +1,6 @@
 package com.sur.balaji.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sur.balaji.dao.CompanyHome;
-import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Company;
+import com.sur.balaji.model.JSONResult;
+import com.sur.balaji.model.JSONResult.Option;
+
 import common.Status;
 
 @Controller
@@ -96,6 +99,28 @@ public class CompanyController {
 		}
 
 		logger.info("deleteCompany() returning " + jsonResult);
+		return jsonResult;
+	}
+	
+	@RequestMapping(value = "/companyOptions", method = RequestMethod.POST)
+	public @ResponseBody JSONResult getCompanyOptions() {
+		JSONResult jsonResult = new JSONResult();
+		try {
+			logger.info("getCompanyOptions() fetching all companys");
+			Company company = new Company();
+			List<Company> companyList = companyHome.findByExample(company);
+			List<Option> options = new ArrayList<Option>();
+			for(Company dept : companyList) {
+				Option option = new Option(dept.getCompanyName(), dept.getCompanyId());
+				options.add(option);
+			}
+			jsonResult.setResult(Status.OK);
+			jsonResult.setOptions(options);
+		} catch (Exception ex) {
+			logger.info("getCompanyOptions() error: " + ex);
+			jsonResult.setResult(Status.ERROR);
+		}
+		logger.info("getCompanyOptions() returning " + jsonResult);
 		return jsonResult;
 	}
 	
