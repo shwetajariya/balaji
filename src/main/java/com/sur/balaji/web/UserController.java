@@ -82,12 +82,13 @@ public class UserController {
 		return jsonResult;
 	}
 
-	@RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
 	public @ResponseBody JSONResult deleteUser(@ModelAttribute("SpringWeb") User user) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete user - " + user);
-			userHome.delete(user);
+			User record = userHome.findById(user.getUserId());
+			userHome.delete(record);
 			jsonResult.setResult(Status.OK);
 		} catch (Exception ex) {
 			logger.info("deleteUser() error: " + ex);

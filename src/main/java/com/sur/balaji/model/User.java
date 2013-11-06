@@ -104,9 +104,13 @@ public class User extends ModelBase implements java.io.Serializable {
         this.messageLogs = messageLogs;
     }
 
-
-
-
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", loginName=" + loginName
+				+ ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", password=" + password + ", emailAddress=" + emailAddress
+				+ ", lastLogin=" + lastLogin + "]";
+	}
 }
 
 
