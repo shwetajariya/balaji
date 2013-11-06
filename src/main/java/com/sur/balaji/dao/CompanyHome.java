@@ -12,6 +12,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sur.balaji.model.Company;
 
@@ -20,11 +23,15 @@ import com.sur.balaji.model.Company;
  * @see com.sur.balaji.dao.Company
  * @author Hibernate Tools
  */
+@Repository("companyHome")
+@Transactional
 public class CompanyHome {
 
     private static final Log log = LogFactory.getLog(CompanyHome.class);
 
-    private final SessionFactory sessionFactory = getSessionFactory();
+    //private final SessionFactory sessionFactory = getSessionFactory();
+    @Autowired
+    private SessionFactory sessionFactory;
     
     protected SessionFactory getSessionFactory() {
         try {
@@ -102,7 +109,7 @@ public class CompanyHome {
         log.debug("getting Company instance with id: " + id);
         try {
             Company instance = (Company) sessionFactory.getCurrentSession()
-                    .get("com.sur.balaji.dao.Company", id);
+                    .get("com.sur.balaji.model.Company", id);
             if (instance==null) {
                 log.debug("get successful, no instance found");
             }
@@ -121,7 +128,7 @@ public class CompanyHome {
         log.debug("finding Company instance by example");
         try {
             List<Company> results = (List<Company>) sessionFactory.getCurrentSession()
-                    .createCriteria("com.sur.balaji.dao.Company")
+                    .createCriteria("com.sur.balaji.model.Company")
                     .add( create(instance) )
             .list();
             log.debug("find by example successful, result size: " + results.size());
