@@ -12,7 +12,8 @@
     <link href="<c:url value="/css/themes/metroblue/jquery-ui.css" />" rel="stylesheet" type="text/css" />
     <link href="<c:url value="/css/highlight.css" />" rel="stylesheet" type="text/css" />
     <!--link href="<c:url value="/jquery/jtable/themes/" />" + jTableStyle)" rel="stylesheet" type="text/css" /-->
-    <link href="<c:url value="/jquery/jtable/themes/metro/blue/jtable.css" />")" rel="stylesheet" type="text/css" />
+    <!--link href="<c:url value="/jquery/jtable/themes/metro/blue/jtable.css" />")" rel="stylesheet" type="text/css" /-->
+    <link href="<c:url value="/jquery/jtable/themes/metro/blue/jtable.css" />" rel="stylesheet" type="text/css" />
 
     <link href="<c:url value="/jquery/syntaxhighligher/styles/shCore.css" />" rel="stylesheet" type="text/css" />
     <link href="<c:url value="/jquery/syntaxhighligher/styles/shThemeDefault.css" />" rel="stylesheet" type="text/css" />
@@ -31,4 +32,11 @@
     <script src="<c:url value="/jquery/jtablesite.js" />" type="text/javascript"></script>
         
     <script type="text/javascript" src="<c:url value="/jquery/jtable/jquery.jtable.js" />"></script>
+    
+    <style>
+		.ui-menu {
+			width: 200px;
+		}
+	</style>
+    
     

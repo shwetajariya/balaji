@@ -8,19 +8,19 @@
             <column name="contactId" />
             <generator class="identity" />
         </id>
-        <many-to-one name="department" class="com.sur.balaji.model.Department" fetch="select">
+        <many-to-one name="department" class="com.sur.balaji.model.Department" fetch="select" lazy="false">
             <column name="departmentId" />
         </many-to-one>
-        <many-to-one name="company" class="com.sur.balaji.model.Company" fetch="select">
+        <many-to-one name="company" class="com.sur.balaji.model.Company" fetch="select" lazy="false">
             <column name="companyId" />
         </many-to-one>
-        <many-to-one name="designation" class="com.sur.balaji.model.Designation" fetch="select">
+        <many-to-one name="designation" class="com.sur.balaji.model.Designation" fetch="select" lazy="false">
             <column name="designationId" />
         </many-to-one>
-        <many-to-one name="user" class="com.sur.balaji.model.User" fetch="select">
+        <many-to-one name="user" class="com.sur.balaji.model.User" fetch="select" lazy="false">
             <column name="modifierId" />
         </many-to-one>
-        <many-to-one name="section" class="com.sur.balaji.model.Section" fetch="select">
+        <many-to-one name="section" class="com.sur.balaji.model.Section" fetch="select" lazy="false">
             <column name="sectionId" />
         </many-to-one>
         <property name="employeeId" type="string">

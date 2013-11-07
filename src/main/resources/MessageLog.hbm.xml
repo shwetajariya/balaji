@@ -23,7 +23,7 @@
         <property name="endTime" type="timestamp">
             <column name="endTime" length="19" not-null="true" />
         </property>
-        <set name="messageStatuses" table="MessageStatus" inverse="true" lazy="true" fetch="select">
+        <set name="messageStatuses" table="MessageStatus" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="messageLogId" />
             </key>

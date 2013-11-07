@@ -83,13 +83,18 @@
 	</script>
 </head>
 <body>
-	<div class="filtering">
-		<form>
-			Name: <input type="text" name="name" id="name" /> 
-			<button type="submit" id="searchButton">Search</button>
-		</form>
+
+<%@include file="menu.jsp" %>
+
+	<div id="contentRendererDiv1" style="height:500px;width:700px;float:left;">
+		<div class="filtering">
+			<form>
+				Name: <input type="text" name="name" id="name" /> 
+				<button type="submit" id="searchButton">Search</button>
+			</form>
+		</div>
+	
+		<div id="contactTableContainer"></div>
 	</div>
 
-	<div id="contactTableContainer"></div>
-</body>
-</html>
+<%@include file="footer.jsp" %>

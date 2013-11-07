@@ -270,6 +270,21 @@ public class Contact extends ModelBase implements java.io.Serializable {
 	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;
 	}
+
+	@Override
+	public String toString() {
+		return "Contact [contactId=" + contactId + ", department=" + department
+				+ ", company=" + company + ", designation=" + designation
+				+ ", user=" + user + ", section=" + section + ", employeeId="
+				+ employeeId + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", priority=" + priority + ", officePhoneNumber="
+				+ officePhoneNumber + ", mobileNumber=" + mobileNumber
+				+ ", residencePhoneNumber=" + residencePhoneNumber
+				+ ", emailAddress=" + emailAddress + ", modifiedOn="
+				+ modifiedOn + ", messageStatuses=" + messageStatuses
+				+ ", contactGroupMappings=" + contactGroupMappings
+				+ ", companyId=" + companyId + ", designationId="
+				+ designationId + ", sectionId=" + sectionId
+				+ ", departmentId=" + departmentId + "]";
+	}
 }
-
-
