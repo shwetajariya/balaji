@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sur.balaji.dao.UserHome;
 import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.User;
+
 import common.Status;
 
 @Controller
@@ -32,7 +33,8 @@ public class UserController {
 
 	/* CRUD operation - Add the user */
 	@RequestMapping(value = "/userListByFiter", method = RequestMethod.POST)
-	public @ResponseBody JSONResult userListByFiter(@ModelAttribute("SpringWeb") User user) {
+	public @ResponseBody
+	JSONResult userListByFiter(@ModelAttribute("SpringWeb") User user) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("userListByFiter() filter - " + user);
@@ -49,7 +51,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
-	public @ResponseBody JSONResult addUser(@ModelAttribute("SpringWeb") User user) {
+	public @ResponseBody
+	JSONResult addUser(@ModelAttribute("SpringWeb") User user) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("add user - " + user);
@@ -66,13 +69,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-	public @ResponseBody JSONResult updateUser(@ModelAttribute("SpringWeb") User user) {
+	public @ResponseBody
+	JSONResult updateUser(@ModelAttribute("SpringWeb") User user) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("update user - " + user);
 			User updatedRecord = userHome.merge(user);
 			jsonResult.setResult(Status.OK);
-			//jsonResult.setRecord(updatedRecord);
+			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateUser() error: " + ex);
 			jsonResult.setResult(Status.ERROR);
@@ -83,7 +87,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
-	public @ResponseBody JSONResult deleteUser(@ModelAttribute("SpringWeb") User user) {
+	public @ResponseBody
+	JSONResult deleteUser(@ModelAttribute("SpringWeb") User user) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete user - " + user);
@@ -98,7 +103,7 @@ public class UserController {
 		logger.info("deleteUser() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
 
@@ -107,4 +112,34 @@ public class UserController {
 		model.addAttribute("message", Status.OK);
 		return VIEW;
 	}
+
+	@RequestMapping(value = "/loginUser", method = RequestMethod.POST)
+	public User loginUser(@ModelAttribute("SpringWeb") User user) {
+		JSONResult jsonResult = new JSONResult();
+		try {
+			logger.info("login user - " + user);
+			User record = userHome.findById(user.getUserId());
+			if (null != record) {
+				if (!user.getPassword().equals(record.getPassword())) {
+					user = null;
+					logger.info("Password didn't match");
+					jsonResult.setResult(Status.EXCEPTION);
+					throw new Exception("Given password didn't match.");
+				}
+			} else {
+				logger.info("User not found.");
+				jsonResult.setResult(Status.EXCEPTION);
+				throw new Exception("Password didn't match.");
+			}
+			jsonResult.setResult(Status.OK);
+
+		} catch (Exception ex) {
+			logger.info("loginUser() error: " + ex);
+			jsonResult.setResult(Status.ERROR);
+		}
+
+		logger.info("loginUser() returning " + jsonResult);
+		return user;
+	}
+
 }
