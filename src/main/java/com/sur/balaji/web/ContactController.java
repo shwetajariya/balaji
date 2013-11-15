@@ -51,6 +51,21 @@ public class ContactController {
 		logger.info("contactListByFiter() returning " + jsonResult);
 		return jsonResult;
 	}
+	
+	@RequestMapping(value = "/contactList", method = RequestMethod.GET)
+	public @ResponseBody List<Contact> getContactList() {
+		List<Contact> contactList;
+		try {
+			Contact contact = new Contact();
+			logger.info("contactListByFiter() filter - " + contact);
+			contactList = contactHome.findByExample(contact);
+		} catch (Exception ex) {
+			logger.info("contactListByFiter() error: " + ex);
+			contactList = new ArrayList<Contact>();
+		}
+		logger.info("contactList() returning " + contactList );
+		return contactList;
+	}
 
 	@RequestMapping(value = "/createContact", method = RequestMethod.POST)
 	public @ResponseBody JSONResult addContact(@ModelAttribute("SpringWeb") Contact contact) {

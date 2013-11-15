@@ -45,9 +45,6 @@ public class Groups extends ModelBase  implements java.io.Serializable {
         this.contactGroupMappings = contactGroupMappings;
     }
 
-
-
-
 }
 
 

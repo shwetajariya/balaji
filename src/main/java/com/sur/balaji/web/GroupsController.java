@@ -52,6 +52,21 @@ public class GroupsController {
 		return jsonResult;
 	}
 
+	@RequestMapping(value = "/groupsList", method = RequestMethod.GET)
+	public @ResponseBody List<Groups> getGroupsList() {
+		List<Groups> groupsList;
+		try {
+			Groups groups = new Groups();
+			logger.info("groupsListByFiter() filter - " + groups);
+			groupsList = groupsHome.findByExample(groups);
+		} catch (Exception ex) {
+			logger.info("groupsListByFiter() error: " + ex);
+			groupsList = new ArrayList<Groups>();
+		}
+		logger.info("groupsListByFiter() returning " + groupsList);
+		return groupsList;
+	}
+	
 	@RequestMapping(value = "/createGroups", method = RequestMethod.POST)
 	public @ResponseBody JSONResult addGroups(@ModelAttribute("SpringWeb") Groups groups) {
 		JSONResult jsonResult = new JSONResult();

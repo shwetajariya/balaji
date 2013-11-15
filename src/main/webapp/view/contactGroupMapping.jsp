@@ -23,12 +23,12 @@
 	                    list: false
 	                },
 	                groups: {
-	                    title: 'ContactGroupMapping Name',
+	                    title: 'Group Name',
 	                    options: '<c:url value="/groups/groupsOptions" />',
 		                width: '23%'
 	                },
 	                contact: {
-	                	title: 'contact',
+	                	title: 'Contact',
 	                	options: '<c:url value="/contact/contactOptions" />',
 	                    width: '23%'
 	                }
