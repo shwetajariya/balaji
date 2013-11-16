@@ -47,7 +47,7 @@
 
 <%@include file="menu.jsp" %>
 
-	<div id="contentRendererDiv1" style="height:500px;width:700px;float:left;">
+	<div id="contentRendererDiv1" style="height:500px;width:700px;float:left;" class="content-renderer">
 		<div class="filtering">
 			<form>
 				Name: <input type="text" name="name" id="name" /> 

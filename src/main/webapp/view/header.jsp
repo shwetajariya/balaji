@@ -36,6 +36,18 @@
     <style>
 		.ui-menu {
 			width: 200px;
+			background-color:#FF9640;
+		}
+		
+		div.checkbox-container {
+			border:2px solid #ccc;
+			width:300px;
+			height: 150px;
+			overflow-y: scroll;
+		}
+		
+		div.content-renderer {
+			
 		}
 	</style>
     
