@@ -1,4 +1,4 @@
-
+<%@ page import="com.sur.balaji.model.User" %>
 <div id="headerRendererDiv1"
 	style="background-color: #dd4814; text-align: center;">
 	<table>
@@ -10,6 +10,13 @@
 		</tr>
 	</table>
 </div>
+
+<%
+	if (session.getAttribute("loggedin_user") == null) {
+		response.sendRedirect(request.getContextPath() + "/login");
+		
+	}
+%>
 
 <div id="menuRendererDiv1"
 	style="background-color: #FF9640; height: 500px; width: 210px; float: left;">
