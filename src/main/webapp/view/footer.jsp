@@ -1,6 +1,6 @@
 
 	
-	<div id="footerRendererDiv1" style="background-color:#EEEEEE;clear:both;text-align:right;">
+	<div id="footerRendererDiv1" style="background-color:#A64B00;clear:both;text-align:right;">
 		Copyright © SurInfotech.com
 	</div>
 	
