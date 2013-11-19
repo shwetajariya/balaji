@@ -10,7 +10,7 @@
 
 	<div id="contentRendererDiv1" style="height:500px;width:700px;float:left;">
 		<div>
-			<form action="<c:url value="/smsMessage/sendSMSMessage" />">
+			<form action="<c:url value="/smsMessage/sendSMSMessage" />" method="post">
 				<table>
 					<tr>
 						<td colspan="1">Message Text:</td>

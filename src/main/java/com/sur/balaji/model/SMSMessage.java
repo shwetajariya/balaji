@@ -7,7 +7,7 @@ public class SMSMessage {
 	private Long messageId;
     private User user;
     private String messageText;
-    private Integer mobileNumber;
+    private String mobileNumbers;
 	private String timeoutMilliSec;
     private List<String> selectedContacts;
     private List<String> selectedGroups;
@@ -31,11 +31,11 @@ public class SMSMessage {
 	public void setMessageText(String messageText) {
 		this.messageText = messageText;
 	}
-	public Integer getMobileNumber() {
-		return mobileNumber;
+	public String getMobileNumbers() {
+		return mobileNumbers;
 	}
-	public void setMobileNumber(Integer mobileNumber) {
-		this.mobileNumber = mobileNumber;
+	public void setMobileNumbers(String mobileNumbers) {
+		this.mobileNumbers = mobileNumbers;
 	}
 	public String getTimeoutMilliSec() {
 		return timeoutMilliSec;
@@ -66,7 +66,7 @@ public class SMSMessage {
 	public String toString() {
 		return "SMSMessage [messageId=" + messageId + ", user=" + user
 				+ ", messageText=" + messageText + ", mobileNumber="
-				+ mobileNumber + ", timeoutMilliSec=" + timeoutMilliSec
+				+ mobileNumbers + ", timeoutMilliSec=" + timeoutMilliSec
 				+ ", selectedContacts=" + selectedContacts
 				+ ", selectedGroups=" + selectedGroups + ", status=" + status
 				+ "]";
