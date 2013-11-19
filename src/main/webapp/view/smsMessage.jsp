@@ -14,7 +14,7 @@
 				<table>
 					<tr>
 						<td colspan="1">Message Text:</td>
-						<td colspan="3"><textarea name="messageText" id="messageText" rows="4" cols="50"
+						<td colspan="3"><textarea name="messageText" id="messageText" rows="4" cols="50" maxlength="140"
 						 title="Type the message to be sent..."></textarea>
 					</tr><tr>
 						<td colspan="1">Timeout In Minutes:</td>
