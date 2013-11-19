@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sur.balaji.dao.MessageTemplateHome;
 import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.MessageTemplate;
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/messageTemplate")
@@ -37,12 +37,12 @@ public class MessageTemplateController {
 		try {
 			logger.info("messageTemplateListByFiter() filter - " + messageTemplate);
 			List<MessageTemplate> messageTemplateList = messageTemplateHome.findByExample(messageTemplate);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(messageTemplateList);
 			jsonResult.setTotalRecordCount(messageTemplateList.size());
 		} catch (Exception ex) {
 			logger.info("messageTemplateListByFiter() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("messageTemplateListByFiter() returning " + jsonResult);
 		return jsonResult;
@@ -54,11 +54,11 @@ public class MessageTemplateController {
 		try {
 			logger.info("add messageTemplate - " + messageTemplate);
 			messageTemplateHome.persist(messageTemplate);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecord(messageTemplate);
 		} catch (Exception ex) {
 			logger.info("addMessageTemplate() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("addMessageTemplate() returning " + jsonResult);
@@ -71,11 +71,11 @@ public class MessageTemplateController {
 		try {
 			logger.info("update messageTemplate - " + messageTemplate);
 			MessageTemplate updatedRecord = messageTemplateHome.merge(messageTemplate);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			//jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateMessageTemplate() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("updateMessageTemplate() returning " + jsonResult);
@@ -89,10 +89,10 @@ public class MessageTemplateController {
 			logger.info("delete messageTemplate - " + messageTemplate);
 			MessageTemplate record = messageTemplateHome.findById(messageTemplate.getTemplateId());
 			messageTemplateHome.delete(record);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
 			logger.info("deleteMessageTemplate() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("deleteMessageTemplate() returning " + jsonResult);
@@ -103,8 +103,8 @@ public class MessageTemplateController {
 	public String get(ModelMap model) {
 
 		logger.info("get method called...");
-		model.addAttribute("status", Status.OK);
-		model.addAttribute("message", Status.OK);
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
 }

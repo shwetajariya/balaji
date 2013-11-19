@@ -19,7 +19,7 @@ import com.sur.balaji.model.Groups;
 import com.sur.balaji.model.SMSMessage;
 import com.sur.balaji.service.SMSEnqueueService;
 
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/smsMessage")
@@ -54,7 +54,7 @@ public class SMSMessageController {
 		List<Groups> groupsList = groupsHome.findByExample(new Groups());
 		model.addAttribute("contacts", contactList);
 		model.addAttribute("groups", groupsList);
-		model.addAttribute("status", Status.OK);
+		model.addAttribute("status", Response.OK);
 		return VIEW;
 	}
 	
@@ -66,7 +66,7 @@ public class SMSMessageController {
 			smsService.sendSMSMessage(smsMessage);
 			model.addAttribute("message", "The message has been added to the send queue.");
 		}catch (Exception ex) {
-			model.addAttribute(Status.ERROR, ex.getMessage());
+			model.addAttribute(Response.ERROR, ex.getMessage());
 		}
 		return get(model);
 	}

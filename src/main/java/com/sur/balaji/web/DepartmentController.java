@@ -18,7 +18,7 @@ import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Department;
 import com.sur.balaji.model.JSONResult.Option;
 
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/department")
@@ -40,12 +40,12 @@ public class DepartmentController {
 		try {
 			logger.info("departmentListByFiter() filter - " + department);
 			List<Department> departmentList = departmentHome.findByExample(department);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(departmentList);
 			jsonResult.setTotalRecordCount(departmentList.size());
 		} catch (Exception ex) {
 			logger.info("departmentListByFiter() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("departmentListByFiter() returning " + jsonResult);
 		return jsonResult;
@@ -57,11 +57,11 @@ public class DepartmentController {
 		try {
 			logger.info("add department - " + department);
 			departmentHome.persist(department);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecord(department);
 		} catch (Exception ex) {
 			logger.info("addDepartment() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("addDepartment() returning " + jsonResult);
@@ -74,11 +74,11 @@ public class DepartmentController {
 		try {
 			logger.info("update department - " + department);
 			Department updatedRecord = departmentHome.merge(department);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			//jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateDepartment() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("updateDepartment() returning " + jsonResult);
@@ -92,10 +92,10 @@ public class DepartmentController {
 			logger.info("delete department - " + department);
 			Department record = departmentHome.findById(department.getDepartmentId());
 			departmentHome.delete(record);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
 			logger.info("deleteDepartment() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("deleteDepartment() returning " + jsonResult);
@@ -114,11 +114,11 @@ public class DepartmentController {
 				Option option = new Option(dept.getDepartmentName(), dept.getDepartmentId());
 				options.add(option);
 			}
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setOptions(options);
 		} catch (Exception ex) {
 			logger.info("getDepartmentOptions() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("getDepartmentOptions() returning " + jsonResult);
 		return jsonResult;
@@ -128,8 +128,8 @@ public class DepartmentController {
 	public String get(ModelMap model) {
 
 		logger.info("get method called...");
-		model.addAttribute("status", Status.OK);
-		model.addAttribute("message", Status.OK);
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
 }

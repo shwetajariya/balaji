@@ -16,7 +16,7 @@ import com.sur.balaji.dao.UserHome;
 import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.User;
 
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/user")
@@ -39,12 +39,12 @@ public class UserController {
 		try {
 			logger.info("userListByFiter() filter - " + user);
 			List<User> userList = userHome.findByExample(user);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(userList);
 			jsonResult.setTotalRecordCount(userList.size());
 		} catch (Exception ex) {
 			logger.info("userListByFiter() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("userListByFiter() returning " + jsonResult);
 		return jsonResult;
@@ -57,11 +57,11 @@ public class UserController {
 		try {
 			logger.info("add user - " + user);
 			userHome.persist(user);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecord(user);
 		} catch (Exception ex) {
 			logger.info("addUser() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("addUser() returning " + jsonResult);
@@ -75,11 +75,11 @@ public class UserController {
 		try {
 			logger.info("update user - " + user);
 			User updatedRecord = userHome.merge(user);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateUser() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("updateUser() returning " + jsonResult);
@@ -94,10 +94,10 @@ public class UserController {
 			logger.info("delete user - " + user);
 			User record = userHome.findById(user.getUserId());
 			userHome.delete(record);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
 			logger.info("deleteUser() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("deleteUser() returning " + jsonResult);
@@ -108,8 +108,8 @@ public class UserController {
 	public String get(ModelMap model) {
 
 		logger.info("get method called...");
-		model.addAttribute("status", Status.OK);
-		model.addAttribute("message", Status.OK);
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
 
@@ -123,19 +123,19 @@ public class UserController {
 				if (!user.getPassword().equals(record.getPassword())) {
 					user = null;
 					logger.info("Password didn't match");
-					jsonResult.setResult(Status.EXCEPTION);
+					jsonResult.setResult(Response.EXCEPTION);
 					throw new Exception("Given password didn't match.");
 				}
 			} else {
 				logger.info("User not found.");
-				jsonResult.setResult(Status.EXCEPTION);
+				jsonResult.setResult(Response.EXCEPTION);
 				throw new Exception("Password didn't match.");
 			}
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 
 		} catch (Exception ex) {
 			logger.info("loginUser() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("loginUser() returning " + jsonResult);

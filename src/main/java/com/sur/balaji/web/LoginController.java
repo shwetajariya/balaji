@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.sur.balaji.dao.UserHome;
 import com.sur.balaji.model.User;
 
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/login")
@@ -49,7 +49,7 @@ public class LoginController {
 				}
 				else{
 					session.setAttribute("loggedin_user", user);
-					model.addAttribute("status", Status.OK);
+					model.addAttribute("status", Response.OK);
 					return HOME_VIEW;
 				}
 			} else {
@@ -58,7 +58,7 @@ public class LoginController {
 			}
 		} catch (Exception ex) {
 			logger.info("loginUser() error: " + ex);
-			model.addAttribute("status", Status.ERROR);
+			model.addAttribute("status", Response.ERROR);
 			model.addAttribute("message", ex.getMessage());
 		}
 		return VIEW;
@@ -68,7 +68,7 @@ public class LoginController {
 	public String get(ModelMap model) {
 
 		logger.info("get method of LoginController called...");
-		model.addAttribute("status", Status.OK);
+		model.addAttribute("status", Response.OK);
 		return VIEW;
 	}
 }

@@ -18,7 +18,7 @@ import com.sur.balaji.model.Company;
 import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.JSONResult.Option;
 
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/company")
@@ -40,12 +40,12 @@ public class CompanyController {
 		try {
 			logger.info("companyListByFiter() filter - " + company);
 			List<Company> companyList = companyHome.findByExample(company);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(companyList);
 			jsonResult.setTotalRecordCount(companyList.size());
 		} catch (Exception ex) {
 			logger.info("companyListByFiter() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("companyListByFiter() returning " + jsonResult);
 		return jsonResult;
@@ -57,11 +57,11 @@ public class CompanyController {
 		try {
 			logger.info("add company - " + company);
 			companyHome.persist(company);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecord(company);
 		} catch (Exception ex) {
 			logger.info("addCompany() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("addCompany() returning " + jsonResult);
@@ -74,11 +74,11 @@ public class CompanyController {
 		try {
 			logger.info("update company - " + company);
 			Company updatedRecord = companyHome.merge(company);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			//jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateCompany() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("updateCompany() returning " + jsonResult);
@@ -92,10 +92,10 @@ public class CompanyController {
 			logger.info("delete company - " + company);
 			Company record = companyHome.findById(company.getCompanyId());
 			companyHome.delete(record);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
 			logger.info("deleteCompany() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("deleteCompany() returning " + jsonResult);
@@ -114,11 +114,11 @@ public class CompanyController {
 				Option option = new Option(dept.getCompanyName(), dept.getCompanyId());
 				options.add(option);
 			}
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setOptions(options);
 		} catch (Exception ex) {
 			logger.info("getCompanyOptions() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("getCompanyOptions() returning " + jsonResult);
 		return jsonResult;
@@ -128,8 +128,8 @@ public class CompanyController {
 	public String get(ModelMap model) {
 
 		logger.info("get method called...");
-		model.addAttribute("status", Status.OK);
-		model.addAttribute("message", Status.OK);
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
 }

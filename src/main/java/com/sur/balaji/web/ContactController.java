@@ -19,7 +19,7 @@ import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Contact;
 import com.sur.balaji.model.JSONResult.Option;
 
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/contact")
@@ -41,12 +41,12 @@ public class ContactController {
 		try {
 			logger.info("contactListByFiter() filter - " + contact);
 			List<Contact> contactList = contactHome.findByExample(contact);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(contactList);
 			jsonResult.setTotalRecordCount(contactList.size());
 		} catch (Exception ex) {
 			logger.info("contactListByFiter() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("contactListByFiter() returning " + jsonResult);
 		return jsonResult;
@@ -73,11 +73,11 @@ public class ContactController {
 		try {
 			logger.info("add contact - " + contact);
 			contactHome.persist(contact);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecord(contact);
 		} catch (Exception ex) {
 			logger.info("addContact() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("addContact() returning " + jsonResult);
@@ -90,11 +90,11 @@ public class ContactController {
 		try {
 			logger.info("update contact - " + contact);
 			Contact updatedRecord = contactHome.merge(contact);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			//jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateContact() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("updateContact() returning " + jsonResult);
@@ -108,10 +108,10 @@ public class ContactController {
 			logger.info("delete contact - " + contact);
 			Contact record = contactHome.findById(contact.getContactId());
 			contactHome.delete(record);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
 			logger.info("deleteContact() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("deleteContact() returning " + jsonResult);
@@ -130,11 +130,11 @@ public class ContactController {
 				Option option = new Option(dept.getContactName(), dept.getContactId());
 				options.add(option);
 			}
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setOptions(options);
 		} catch (Exception ex) {
 			logger.info("getContactOptions() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("getContactOptions() returning " + jsonResult);
 		return jsonResult;
@@ -144,8 +144,8 @@ public class ContactController {
 	public String get(ModelMap model) {
 
 		logger.info("get method called...");
-		model.addAttribute("status", Status.OK);
-		model.addAttribute("message", Status.OK);
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
 }

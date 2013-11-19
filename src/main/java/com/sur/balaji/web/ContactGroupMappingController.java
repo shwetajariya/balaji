@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sur.balaji.dao.ContactGroupMappingHome;
 import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.ContactGroupMapping;
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/contactGroupMapping")
@@ -37,12 +37,12 @@ public class ContactGroupMappingController {
 		try {
 			logger.info("contactGroupMappingListByFiter() filter - " + contactGroupMapping);
 			List<ContactGroupMapping> contactGroupMappingList = contactGroupMappingHome.findByExample(contactGroupMapping);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(contactGroupMappingList);
 			jsonResult.setTotalRecordCount(contactGroupMappingList.size());
 		} catch (Exception ex) {
 			logger.info("contactGroupMappingListByFiter() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("contactGroupMappingListByFiter() returning " + jsonResult);
 		return jsonResult;
@@ -54,11 +54,11 @@ public class ContactGroupMappingController {
 		try {
 			logger.info("add contactGroupMapping - " + contactGroupMapping);
 			contactGroupMappingHome.persist(contactGroupMapping);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecord(contactGroupMapping);
 		} catch (Exception ex) {
 			logger.info("addContactGroupMapping() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("addContactGroupMapping() returning " + jsonResult);
@@ -71,11 +71,11 @@ public class ContactGroupMappingController {
 		try {
 			logger.info("update contactGroupMapping - " + contactGroupMapping);
 			ContactGroupMapping updatedRecord = contactGroupMappingHome.merge(contactGroupMapping);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			//jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateContactGroupMapping() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("updateContactGroupMapping() returning " + jsonResult);
@@ -89,10 +89,10 @@ public class ContactGroupMappingController {
 			logger.info("delete contactGroupMapping - " + contactGroupMapping);
 			ContactGroupMapping record = contactGroupMappingHome.findById(contactGroupMapping.getId());
 			contactGroupMappingHome.delete(record);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
 			logger.info("deleteContactGroupMapping() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("deleteContactGroupMapping() returning " + jsonResult);
@@ -103,8 +103,8 @@ public class ContactGroupMappingController {
 	public String get(ModelMap model) {
 
 		logger.info("get method called...");
-		model.addAttribute("status", Status.OK);
-		model.addAttribute("message", Status.OK);
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
 }

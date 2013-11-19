@@ -19,7 +19,7 @@ import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Designation;
 import com.sur.balaji.model.JSONResult.Option;
 
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/designation")
@@ -41,12 +41,12 @@ public class DesignationController {
 		try {
 			logger.info("designationListByFiter() filter - " + designation);
 			List<Designation> designationList = designationHome.findByExample(designation);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(designationList);
 			jsonResult.setTotalRecordCount(designationList.size());
 		} catch (Exception ex) {
 			logger.info("designationListByFiter() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("designationListByFiter() returning " + jsonResult);
 		return jsonResult;
@@ -58,11 +58,11 @@ public class DesignationController {
 		try {
 			logger.info("add designation - " + designation);
 			designationHome.persist(designation);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecord(designation);
 		} catch (Exception ex) {
 			logger.info("addDesignation() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("addDesignation() returning " + jsonResult);
@@ -75,11 +75,11 @@ public class DesignationController {
 		try {
 			logger.info("update designation - " + designation);
 			Designation updatedRecord = designationHome.merge(designation);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			//jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateDesignation() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("updateDesignation() returning " + jsonResult);
@@ -93,10 +93,10 @@ public class DesignationController {
 			logger.info("delete designation - " + designation);
 			Designation record = designationHome.findById(designation.getDesignationId());
 			designationHome.delete(record);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
 			logger.info("deleteDesignation() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("deleteDesignation() returning " + jsonResult);
@@ -115,11 +115,11 @@ public class DesignationController {
 				Option option = new Option(dept.getDesignation(), dept.getDesignationId());
 				options.add(option);
 			}
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setOptions(options);
 		} catch (Exception ex) {
 			logger.info("getDesignationOptions() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("getDesignationOptions() returning " + jsonResult);
 		return jsonResult;
@@ -129,8 +129,8 @@ public class DesignationController {
 	public String get(ModelMap model) {
 
 		logger.info("get method called...");
-		model.addAttribute("status", Status.OK);
-		model.addAttribute("message", Status.OK);
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
 }

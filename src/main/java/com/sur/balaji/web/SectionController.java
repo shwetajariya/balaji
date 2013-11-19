@@ -19,7 +19,7 @@ import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Section;
 import com.sur.balaji.model.JSONResult.Option;
 
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/section")
@@ -41,12 +41,12 @@ public class SectionController {
 		try {
 			logger.info("sectionListByFiter() filter - " + section);
 			List<Section> sectionList = sectionHome.findByExample(section);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(sectionList);
 			jsonResult.setTotalRecordCount(sectionList.size());
 		} catch (Exception ex) {
 			logger.info("sectionListByFiter() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("sectionListByFiter() returning " + jsonResult);
 		return jsonResult;
@@ -58,11 +58,11 @@ public class SectionController {
 		try {
 			logger.info("add section - " + section);
 			sectionHome.persist(section);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecord(section);
 		} catch (Exception ex) {
 			logger.info("addSection() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("addSection() returning " + jsonResult);
@@ -75,11 +75,11 @@ public class SectionController {
 		try {
 			logger.info("update section - " + section);
 			Section updatedRecord = sectionHome.merge(section);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			//jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateSection() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("updateSection() returning " + jsonResult);
@@ -93,10 +93,10 @@ public class SectionController {
 			logger.info("delete section - " + section);
 			Section record = sectionHome.findById(section.getSectionId());
 			sectionHome.delete(record);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
 			logger.info("deleteSection() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("deleteSection() returning " + jsonResult);
@@ -115,11 +115,11 @@ public class SectionController {
 				Option option = new Option(dept.getSectionName(), dept.getSectionId());
 				options.add(option);
 			}
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setOptions(options);
 		} catch (Exception ex) {
 			logger.info("getSectionOptions() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("getSectionOptions() returning " + jsonResult);
 		return jsonResult;
@@ -129,8 +129,8 @@ public class SectionController {
 	public String get(ModelMap model) {
 
 		logger.info("get method called...");
-		model.addAttribute("status", Status.OK);
-		model.addAttribute("message", Status.OK);
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
 }

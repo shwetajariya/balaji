@@ -19,7 +19,7 @@ import com.sur.balaji.model.JSONResult;
 import com.sur.balaji.model.Groups;
 import com.sur.balaji.model.JSONResult.Option;
 
-import common.Status;
+import common.Response;
 
 @Controller
 @RequestMapping("/groups")
@@ -41,12 +41,12 @@ public class GroupsController {
 		try {
 			logger.info("groupsListByFiter() filter - " + groups);
 			List<Groups> groupsList = groupsHome.findByExample(groups);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(groupsList);
 			jsonResult.setTotalRecordCount(groupsList.size());
 		} catch (Exception ex) {
 			logger.info("groupsListByFiter() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("groupsListByFiter() returning " + jsonResult);
 		return jsonResult;
@@ -73,11 +73,11 @@ public class GroupsController {
 		try {
 			logger.info("add groups - " + groups);
 			groupsHome.persist(groups);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setRecord(groups);
 		} catch (Exception ex) {
 			logger.info("addGroups() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("addGroups() returning " + jsonResult);
@@ -90,11 +90,11 @@ public class GroupsController {
 		try {
 			logger.info("update groups - " + groups);
 			Groups updatedRecord = groupsHome.merge(groups);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			//jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateGroups() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("updateGroups() returning " + jsonResult);
@@ -108,10 +108,10 @@ public class GroupsController {
 			logger.info("delete groups - " + groups);
 			Groups record = groupsHome.findById(groups.getGroupId());
 			groupsHome.delete(record);
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
 			logger.info("deleteGroups() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 
 		logger.info("deleteGroups() returning " + jsonResult);
@@ -130,11 +130,11 @@ public class GroupsController {
 				Option option = new Option(dept.getGroupName(), dept.getGroupId());
 				options.add(option);
 			}
-			jsonResult.setResult(Status.OK);
+			jsonResult.setResult(Response.OK);
 			jsonResult.setOptions(options);
 		} catch (Exception ex) {
 			logger.info("getGroupsOptions() error: " + ex);
-			jsonResult.setResult(Status.ERROR);
+			jsonResult.setResult(Response.ERROR);
 		}
 		logger.info("getGroupsOptions() returning " + jsonResult);
 		return jsonResult;
@@ -144,8 +144,8 @@ public class GroupsController {
 	public String get(ModelMap model) {
 
 		logger.info("get method called...");
-		model.addAttribute("status", Status.OK);
-		model.addAttribute("message", Status.OK);
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
 }
