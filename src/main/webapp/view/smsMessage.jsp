@@ -42,7 +42,7 @@
 						</td>
 					</tr><tr>
 						<td colspan="1">Mobile Numbers:</td>
-						<td colspan="3"><input type="text" name="mobileNumber" id="mobileNumber"
+						<td colspan="3"><input type="text" name="mobileNumbers" id="mobileNumbers"
 						 title="Comma separated list of mobile numbers to which the SMS needs to be sent.
 						 example:09999999999,08888888888,07777777777..." /></td>
 					</tr><tr>

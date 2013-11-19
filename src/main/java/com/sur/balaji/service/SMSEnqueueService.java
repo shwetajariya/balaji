@@ -18,9 +18,9 @@ import com.sur.balaji.model.SMSMessage;
 import com.sur.balaji.model.SMSMessageEntry;
 
 @Service
-public class SMSService {
+public class SMSEnqueueService {
 
-	protected final Log log = LogFactory.getLog(SMSService.class);
+	protected final Log log = LogFactory.getLog(SMSEnqueueService.class);
 	private GroupsHome groupsHome;
 	private ContactHome contactHome;
 	private QueueService queueService;

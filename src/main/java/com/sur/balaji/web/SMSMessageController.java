@@ -10,13 +10,15 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sur.balaji.dao.ContactHome;
 import com.sur.balaji.dao.GroupsHome;
 import com.sur.balaji.model.Contact;
 import com.sur.balaji.model.Groups;
 import com.sur.balaji.model.SMSMessage;
-import com.sur.balaji.service.SMSService;
+import com.sur.balaji.service.SMSEnqueueService;
+
 import common.Status;
 
 @Controller
@@ -26,7 +28,7 @@ public class SMSMessageController {
 	protected final Log log = LogFactory.getLog(SMSMessageController.class);
 	private ContactHome contactHome;
 	private GroupsHome groupsHome;
-	private SMSService smsService;
+	private SMSEnqueueService smsService;
 	private static final String VIEW = "smsMessage";
 
 	@Autowired
@@ -40,7 +42,7 @@ public class SMSMessageController {
 	}
 
 	@Autowired
-	public void setSMSService(SMSService smsService) {
+	public void setSMSService(SMSEnqueueService smsService) {
 		this.smsService = smsService;
 	}
 
@@ -57,13 +59,15 @@ public class SMSMessageController {
 	}
 	
 	@RequestMapping(value = "/sendSMSMessage", method = RequestMethod.POST)
-	public String sendSMSMessage(@ModelAttribute("SpringWeb") SMSMessage smsMessage) {
+	public String sendSMSMessage(@ModelAttribute("SpringWeb") SMSMessage smsMessage,
+			ModelMap model) {
 		try{
 			log.info("sendSMSMessage method called..., smsMessage=" + smsMessage);
 			smsService.sendSMSMessage(smsMessage);
-			return Status.OK;
+			model.addAttribute("message", "The message has been added to the send queue.");
 		}catch (Exception ex) {
-			return Status.ERROR + ": " + ex.getMessage();
+			model.addAttribute(Status.ERROR, ex.getMessage());
 		}
+		return get(model);
 	}
 }
