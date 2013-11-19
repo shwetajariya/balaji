@@ -23,15 +23,15 @@ public class Status {
 
 	public static String getString(int statusCode) {
 		switch (statusCode) {
-		case 1:
+		case PENDING:
 			return "PENDING";
-		case 2:
+		case AWAITING_ACK:
 			return "AWAITING_ACK";
-		case 3:
+		case SENT:
 			return "SENT";
-		case 4:
+		case ERROR:
 			return "ERROR";
-		case 5:
+		case OTHER:
 		default:
 			return "OTHER";
 		}
