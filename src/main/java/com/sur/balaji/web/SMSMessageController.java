@@ -10,14 +10,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.sur.balaji.dao.ContactHome;
 import com.sur.balaji.dao.GroupsHome;
 import com.sur.balaji.model.Contact;
 import com.sur.balaji.model.Groups;
 import com.sur.balaji.model.SMSMessage;
 import com.sur.balaji.service.SMSEnqueueService;
+import com.sur.balaji.dao.MessageTemplateHome;
+import com.sur.balaji.model.MessageTemplate;
 
 import common.Response;
 
@@ -29,6 +29,7 @@ public class SMSMessageController {
 	private ContactHome contactHome;
 	private GroupsHome groupsHome;
 	private SMSEnqueueService smsService;
+	private MessageTemplateHome messageTemplateHome;
 	private static final String VIEW = "smsMessage";
 
 	@Autowired
@@ -45,6 +46,12 @@ public class SMSMessageController {
 	public void setSMSService(SMSEnqueueService smsService) {
 		this.smsService = smsService;
 	}
+	
+	@Autowired
+	public void setMessageTemplateHome(MessageTemplateHome messageTemplateHome) {
+		this.messageTemplateHome = messageTemplateHome;
+	}
+
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
@@ -52,8 +59,10 @@ public class SMSMessageController {
 		log.info("get method called...");
 		List<Contact> contactList = contactHome.findByExample(new Contact());
 		List<Groups> groupsList = groupsHome.findByExample(new Groups());
+		List<MessageTemplate> messageTemplateList = messageTemplateHome.findByExample(new MessageTemplate());
 		model.addAttribute("contacts", contactList);
 		model.addAttribute("groups", groupsList);
+		model.addAttribute("templates", messageTemplateList);
 		model.addAttribute("status", Response.OK);
 		return VIEW;
 	}
