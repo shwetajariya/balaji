@@ -1,7 +1,7 @@
 
 	
-	<div id="footerRendererDiv1" style="background-color:#A64B00;clear:both;text-align:right;">
-		Copyright © SurInfotech.com
+	<div id="footerRendererDiv1" style="background-color:blue;clear:both;text-align:right;">
+		<font style="background-color:red;"> Copyright © SurInfotech.com</font>
 	</div>
 	
 	<script>
