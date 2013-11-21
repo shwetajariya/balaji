@@ -107,6 +107,15 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
+
+		<!-- Add manual dependency of sms lib -->
+
+		<dependency>
+			<artifactId>smslib</artifactId>
+			<groupId>org.smslib</groupId>
+			<version>3.5.1</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
