@@ -1,4 +1,7 @@
-<%@include file="header.jsp" %>
+<%-- <%@include file="header.jsp" %> --%>
+
+<%@include file="newHeader.jsp" %>
+<%@include file="leftSidebar.jsp" %>
     
 	<script type="text/javascript">
 	 
@@ -44,17 +47,17 @@
 	</script>
 </head>
 <body>
-<%@include file="menu.jsp" %>
+<%-- <%@include file="menu.jsp" %> --%>
 
 	<div id="contentRendererDiv1" style="height:500px;width:700px;float:left;">
 		<div class="filtering">
 			<form>
-				Name: <input type="text" name="name" id="name" /> 
-				<button type="submit" id="searchButton">Search</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name:Name: <input type="text" name="name" id="name" /> 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name:<button type="submit" id="searchButton">Search</button>
 			</form>
 		</div>
 	
 		<div id="groupsTableContainer"></div>
 	</div>
 
-<%@include file="footer.jsp" %>
+<%@include file="newFooter.jsp" %>

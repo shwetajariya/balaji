@@ -25,7 +25,7 @@ public class LoginController {
 	protected final Log logger = LogFactory.getLog(getClass());
 	private UserHome userHome;
 	private static final String VIEW = "login";
-	private static final String HOME_VIEW = "contact";
+	private static final String HOME_VIEW = "home";
 
 	@Autowired
 	public void setUserHome(UserHome userHome) {

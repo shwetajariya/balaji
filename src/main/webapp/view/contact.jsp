@@ -1,4 +1,6 @@
-<%@include file="header.jsp" %>
+<%-- <%@include file="header.jsp" %> --%>
+<%@include file="newHeader.jsp" %>
+<%@include file="leftSidebar.jsp" %>
     
 	<script type="text/javascript">
 	 
@@ -84,17 +86,19 @@
 </head>
 <body>
 
-<%@include file="menu.jsp" %>
+<%-- <%@include file="menu.jsp" %> --%>
 
-	<div id="contentRendererDiv1" style="height:500px;width:700px;float:left;">
+	&nbsp;&nbsp;&nbsp;<div id="contentRendererDiv1" style="height:500px;width:700px;float:left;">
 		<div class="filtering">
 			<form>
-				Name: <input type="text" name="name" id="name" /> 
-				<button type="submit" id="searchButton">Search</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name: <input type="text" name="name" id="name" /> 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="searchButton">Search</button>
 			</form>
 		</div>
 	
-		<div id="contactTableContainer"></div>
+		&nbsp;&nbsp;&nbsp;<div id="contactTableContainer"></div>
 	</div>
 
-<%@include file="footer.jsp" %>
+<%-- <%@include file="footer.jsp" %> --%>
+<%-- <%@include file="rightSilder.jsp" %> --%>
+<%@include file="newFooter.jsp" %>

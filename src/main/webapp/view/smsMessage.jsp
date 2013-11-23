@@ -1,4 +1,7 @@
-<%@include file="header.jsp" %>
+<%-- <%@include file="header.jsp" %> --%>
+
+<%@include file="newHeader.jsp" %>
+<%@include file="leftSidebar.jsp" %>
     
 	<script type="text/javascript">
 	 
@@ -6,7 +9,7 @@
 </head>
 <body>
 
-<%@include file="menu.jsp" %>
+<%-- <%@include file="menu.jsp" %> --%>
 
 	<div id="contentRendererDiv1" style="height:500px;width:700px;float:left;">
 		<div>
@@ -33,6 +36,8 @@
 						<td colspan="3"><input type="text" name="timeoutMinutes"
 							id="timeoutMinutes"
 							title="Time in number of minutes after which the SMS sending process should be terminated." /></td>
+							<td></td>
+							<td> </td>
 					</tr>
 					<tr>
 						<td colspan="1">Groups:</td>
@@ -44,6 +49,8 @@
 								</c:forEach>
 							</div>
 						</td>
+						<td></td>
+							<td> </td>
 					</tr>
 					<tr>
 						<td colspan="1">Contacts:</td>
@@ -56,6 +63,8 @@
 								</c:forEach>
 							</div>
 						</td>
+						<td></td>
+							<td> </td>
 					</tr>
 					<tr>
 						<td colspan="1">Mobile Numbers:</td>
@@ -63,10 +72,16 @@
 							id="mobileNumbers"
 							title="Comma separated list of mobile numbers to which the SMS needs to be sent.
 						 example:09999999999,08888888888,07777777777..." /></td>
+						 <td></td>
+							<td> </td>
 					</tr>
 					<tr>
 						<td><button type="submit" id="postSMSButton">Send
 								SMS</button>
+								<td></td>
+							<td> </td>
+							<td></td>
+							
 					</tr>
 				</table>
 			</form>
@@ -93,4 +108,4 @@
 	        return xmlHttp.responseText;
 	    });
 	</script-->
-<%@include file="footer.jsp" %>
+<%@include file="newFooter.jsp" %>
