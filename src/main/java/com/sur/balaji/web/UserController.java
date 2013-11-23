@@ -112,6 +112,15 @@ public class UserController {
 		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String getHome(ModelMap model) {
+
+		logger.info("get method called...");
+		model.addAttribute("status", Response.OK);
+		model.addAttribute("message", Response.OK);
+		return "home";
+	}
 
 	@RequestMapping(value = "/loginUser", method = RequestMethod.POST)
 	public User loginUser(@ModelAttribute("SpringWeb") User user) {

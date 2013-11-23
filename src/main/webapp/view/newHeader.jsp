@@ -74,7 +74,7 @@
 		</div>
 		<div id="menu">
 			<ul id="main">
-				<li class="current_page_item"><a href="#">Homepage</a></li>
+				<li class="current_page_item"><a href="<c:url value="/user/home" />">Homepage</a></li>
 				<li><a href="#">Change header page</a></li>
 
 				<li><a href="#">Contact Us</a></li>
