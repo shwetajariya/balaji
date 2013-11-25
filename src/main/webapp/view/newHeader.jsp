@@ -68,9 +68,8 @@
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#"><span>Bharat Oman</span>Refineries</a>
+				<a href="#"><span>Bharat Oman Refineries Limited Bina</span></a>
 			</h1>
-			<p>Limited Bina</p>
 		</div>
 		<div id="menu">
 			<ul id="main">
