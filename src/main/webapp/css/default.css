@@ -72,8 +72,8 @@ img.right {
 	width: 1000px;
 	height: 100px;
 	margin: 0 auto;
-	padding: 0 10px 0 70px;
-	background: url(../image/BORL-LOGO.png) no-repeat left top;
+	padding: 0 10px 0 110px;
+	background: url(../image/img01_BORL.jpg) no-repeat left top;
 }
 
 #logo h1, #logo p {
@@ -89,7 +89,7 @@ img.right {
 #logo h1 {
 	padding: 25px 0 0 0;
 	letter-spacing: -1px;
-	text-transform: uppercase;
+	text-transform: none;
 	font-weight: normal;
 	font-size: 3em;
 }
