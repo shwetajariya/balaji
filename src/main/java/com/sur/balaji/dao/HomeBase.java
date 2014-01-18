@@ -10,15 +10,18 @@ import org.hibernate.service.ServiceRegistryBuilder;
 public class HomeBase {
 
 	private static final Log log = LogFactory.getLog(UserHome.class);
-	//private static final SessionFactory sessionFactory = buildSessionFactory();
+	// private static final SessionFactory sessionFactory =
+	// buildSessionFactory();
 	private static SessionFactory sessionFactory;
 
 	private static SessionFactory buildSessionFactory() {
 		try {
 			Configuration conf = new Configuration();
-	        conf.configure();  
-	        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
-			SessionFactory sessionFactory = conf.buildSessionFactory(serviceRegistry);
+			conf.configure();
+			ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
+					.applySettings(conf.getProperties()).buildServiceRegistry();
+			SessionFactory sessionFactory = conf
+					.buildSessionFactory(serviceRegistry);
 
 			return sessionFactory;
 

@@ -4,9 +4,11 @@
 <html>
 <head>
 
-
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title>Bharat Oman Refineries Limited Bina</title>
+<title>Bharat Oman Refineries Limited, Bina</title>
+<link rel="SHORTCUT ICON" href="../image/BORL-LOGO.ico">
+<link rel="icon" href="../image/BORL-LOGO.ico" type="image/ico">
+
 <meta name="keywords" content="" />
 <meta name="Premium Series" content="" />
 <link href="<c:url value="/css/default.css" />" rel="stylesheet"

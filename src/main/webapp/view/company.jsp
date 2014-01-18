@@ -1,6 +1,6 @@
 <%-- <%@include file="header.jsp" %> --%>
   
- <%@include file="newHeader.jsp" %>
+<%@include file="newHeader.jsp" %>
 <%@include file="leftSidebar.jsp" %>
 	<script type="text/javascript">
 	 

@@ -1,4 +1,5 @@
 package com.sur.sms.gateway.sms;
+
 import java.io.IOException;
 
 import org.smslib.AGateway;

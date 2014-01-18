@@ -1,6 +1,6 @@
 package com.sur.balaji.dao;
-// Generated 7 Oct, 2013 7:45:54 PM by Hibernate Tools 4.0.0
 
+// Generated 7 Oct, 2013 7:45:54 PM by Hibernate Tools 4.0.0
 
 import static org.hibernate.criterion.Example.create;
 
@@ -21,128 +21,122 @@ import com.sur.balaji.model.User;
 
 /**
  * Home object for domain model class User.
+ * 
  * @see com.sur.balaji.dao.User
  * @author Hibernate Tools
  */
 @Repository("userHome")
 @Transactional
-public class UserHome extends HomeBase{
+public class UserHome extends HomeBase {
 
-    private static final Log log = LogFactory.getLog(UserHome.class);
+	private static final Log log = LogFactory.getLog(UserHome.class);
 
-    //private final SessionFactory sessionFactory = getSessionFactory1();
-    @Autowired
-    private SessionFactory sessionFactory;
-    
-    protected SessionFactory getSessionFactory() {
-        try {
-            return (SessionFactory) new InitialContext().lookup("SessionFactory");
-        }
-        catch (Exception e) {
-            log.error("Could not locate SessionFactory in JNDI", e);
-            throw new IllegalStateException("Could not locate SessionFactory in JNDI");
-        }
-    }
-    
-    public void persist(User transientInstance) {
-        log.debug("persisting User instance");
-        try {
-        	if(transientInstance.getLastLogin() == null){
-        		Date lastLogin = new Date();
-        		transientInstance.setLastLogin(lastLogin);
-        	}
-            sessionFactory.getCurrentSession().persist(transientInstance);
-            log.debug("persist successful");
-        }
-        catch (RuntimeException re) {
-            log.error("persist failed", re);
-            throw re;
-        }
-    }
-    
-    public void attachDirty(User instance) {
-        log.debug("attaching dirty User instance");
-        try {
-            sessionFactory.getCurrentSession().saveOrUpdate(instance);
-            log.debug("attach successful");
-        }
-        catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-    
-    public void attachClean(User instance) {
-        log.debug("attaching clean User instance");
-        try {
-            sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
-            log.debug("attach successful");
-        }
-        catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-    
-    public void delete(User persistentInstance) {
-        log.debug("deleting User instance");
-        try {
-            sessionFactory.getCurrentSession().delete(persistentInstance);
-            log.debug("delete successful");
-        }
-        catch (RuntimeException re) {
-            log.error("delete failed", re);
-            throw re;
-        }
-    }
-    
-    public User merge(User detachedInstance) {
-        log.debug("merging User instance");
-        try {
-            User result = (User) sessionFactory.getCurrentSession()
-                    .merge(detachedInstance);
-            log.debug("merge successful");
-            return result;
-        }
-        catch (RuntimeException re) {
-            log.error("merge failed", re);
-            throw re;
-        }
-    }
-    
-    public User findById( java.lang.Long id) {
-        log.debug("getting User instance with id: " + id);
-        try {
-            User instance = (User) sessionFactory.getCurrentSession()
-                    .get("com.sur.balaji.model.User", id);
-            if (instance==null) {
-                log.debug("get successful, no instance found");
-            }
-            else {
-                log.debug("get successful, instance found");
-            }
-            return instance;
-        }
-        catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
-        }
-    }
-    
-    public List<User> findByExample(User instance) {
-        log.debug("finding User instance by example");
-        try {
-            List<User> results = (List<User>) sessionFactory.getCurrentSession()
-                    .createCriteria("com.sur.balaji.model.User")
-                    .add( create(instance) )
-            .list();
-            log.debug("find by example successful, result size: " + results.size());
-            return results;
-        }
-        catch (RuntimeException re) {
-            log.error("find by example failed", re);
-            throw re;
-        }
-    } 
+	// private final SessionFactory sessionFactory = getSessionFactory1();
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	protected SessionFactory getSessionFactory() {
+		try {
+			return (SessionFactory) new InitialContext()
+					.lookup("SessionFactory");
+		} catch (Exception e) {
+			log.error("Could not locate SessionFactory in JNDI", e);
+			throw new IllegalStateException(
+					"Could not locate SessionFactory in JNDI");
+		}
+	}
+
+	public void persist(User transientInstance) {
+		log.debug("persisting User instance");
+		try {
+			if (transientInstance.getLastLogin() == null) {
+				Date lastLogin = new Date();
+				transientInstance.setLastLogin(lastLogin);
+			}
+			sessionFactory.getCurrentSession().persist(transientInstance);
+			log.debug("persist successful");
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
+		}
+	}
+
+	public void attachDirty(User instance) {
+		log.debug("attaching dirty User instance");
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(instance);
+			log.debug("attach successful");
+		} catch (RuntimeException re) {
+			log.error("attach failed", re);
+			throw re;
+		}
+	}
+
+	public void attachClean(User instance) {
+		log.debug("attaching clean User instance");
+		try {
+			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
+			log.debug("attach successful");
+		} catch (RuntimeException re) {
+			log.error("attach failed", re);
+			throw re;
+		}
+	}
+
+	public void delete(User persistentInstance) {
+		log.debug("deleting User instance");
+		try {
+			sessionFactory.getCurrentSession().delete(persistentInstance);
+			log.debug("delete successful");
+		} catch (RuntimeException re) {
+			log.error("delete failed", re);
+			throw re;
+		}
+	}
+
+	public User merge(User detachedInstance) {
+		log.debug("merging User instance");
+		try {
+			User result = (User) sessionFactory.getCurrentSession().merge(
+					detachedInstance);
+			log.debug("merge successful");
+			return result;
+		} catch (RuntimeException re) {
+			log.error("merge failed", re);
+			throw re;
+		}
+	}
+
+	public User findById(java.lang.Long id) {
+		log.debug("getting User instance with id: " + id);
+		try {
+			User instance = (User) sessionFactory.getCurrentSession().get(
+					"com.sur.balaji.model.User", id);
+			if (instance == null) {
+				log.debug("get successful, no instance found");
+			} else {
+				log.debug("get successful, instance found");
+			}
+			return instance;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+
+	public List<User> findByExample(User instance) {
+		log.debug("finding User instance by example");
+		try {
+			List<User> results = (List<User>) sessionFactory
+					.getCurrentSession()
+					.createCriteria("com.sur.balaji.model.User")
+					.add(create(instance)).list();
+			log.debug("find by example successful, result size: "
+					+ results.size());
+			return results;
+		} catch (RuntimeException re) {
+			log.error("find by example failed", re);
+			throw re;
+		}
+	}
 }
-

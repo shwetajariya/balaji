@@ -36,7 +36,8 @@ public class ContactController {
 
 	/* CRUD operation - Add the contact */
 	@RequestMapping(value = "/contactListByFiter", method = RequestMethod.POST)
-	public @ResponseBody JSONResult contactListByFiter(@ModelAttribute("SpringWeb") Contact contact) {
+	public @ResponseBody
+	JSONResult contactListByFiter(@ModelAttribute("SpringWeb") Contact contact) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("contactListByFiter() filter - " + contact);
@@ -51,9 +52,10 @@ public class ContactController {
 		logger.info("contactListByFiter() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "/contactList", method = RequestMethod.GET)
-	public @ResponseBody List<Contact> getContactList() {
+	public @ResponseBody
+	List<Contact> getContactList() {
 		List<Contact> contactList;
 		try {
 			Contact contact = new Contact();
@@ -63,12 +65,13 @@ public class ContactController {
 			logger.info("contactListByFiter() error: " + ex);
 			contactList = new ArrayList<Contact>();
 		}
-		logger.info("contactList() returning " + contactList );
+		logger.info("contactList() returning " + contactList);
 		return contactList;
 	}
 
 	@RequestMapping(value = "/createContact", method = RequestMethod.POST)
-	public @ResponseBody JSONResult addContact(@ModelAttribute("SpringWeb") Contact contact) {
+	public @ResponseBody
+	JSONResult addContact(@ModelAttribute("SpringWeb") Contact contact) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("add contact - " + contact);
@@ -85,13 +88,14 @@ public class ContactController {
 	}
 
 	@RequestMapping(value = "/updateContact", method = RequestMethod.POST)
-	public @ResponseBody JSONResult updateContact(@ModelAttribute("SpringWeb") Contact contact) {
+	public @ResponseBody
+	JSONResult updateContact(@ModelAttribute("SpringWeb") Contact contact) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("update contact - " + contact);
 			Contact updatedRecord = contactHome.merge(contact);
 			jsonResult.setResult(Response.OK);
-			//jsonResult.setRecord(updatedRecord);
+			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateContact() error: " + ex);
 			jsonResult.setResult(Response.ERROR);
@@ -102,7 +106,8 @@ public class ContactController {
 	}
 
 	@RequestMapping(value = "/deleteContact", method = RequestMethod.POST)
-	public @ResponseBody JSONResult deleteContact(@ModelAttribute("SpringWeb") Contact contact) {
+	public @ResponseBody
+	JSONResult deleteContact(@ModelAttribute("SpringWeb") Contact contact) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete contact - " + contact);
@@ -117,17 +122,19 @@ public class ContactController {
 		logger.info("deleteContact() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "/contactOptions", method = RequestMethod.POST)
-	public @ResponseBody JSONResult getContactOptions() {
+	public @ResponseBody
+	JSONResult getContactOptions() {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("getContactOptions() fetching all contacts");
 			Contact contact = new Contact();
 			List<Contact> contactList = contactHome.findByExample(contact);
 			List<Option> options = new ArrayList<Option>();
-			for(Contact dept : contactList) {
-				Option option = new Option(dept.getContactName(), dept.getContactId());
+			for (Contact dept : contactList) {
+				Option option = new Option(dept.getContactName(),
+						dept.getContactId());
 				options.add(option);
 			}
 			jsonResult.setResult(Response.OK);
@@ -139,7 +146,7 @@ public class ContactController {
 		logger.info("getContactOptions() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
 

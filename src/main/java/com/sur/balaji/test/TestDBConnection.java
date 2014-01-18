@@ -7,7 +7,8 @@ public class TestDBConnection {
 
 	public static void main(String[] args) {
 
-		// TODO: for this test to run, update home to create session from new configuration...
+		// TODO: for this test to run, update home to create session from new
+		// configuration...
 		SectionHome sectionHome = new SectionHome();
 		Section section = new Section();
 		section.setSectionName("test_section");

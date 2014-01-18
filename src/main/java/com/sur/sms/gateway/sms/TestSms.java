@@ -1,4 +1,5 @@
 package com.sur.sms.gateway.sms;
+
 public class TestSms {
 
 	private static String port = "COM29"; // Modem Port.
@@ -20,7 +21,7 @@ public class TestSms {
 		}
 		System.out.println(" send");
 		gsmModem.stopService();
-//		PropertiesUtil obj = new PropertiesUtil();
-//		obj.getProperty("");
+		// PropertiesUtil obj = new PropertiesUtil();
+		// obj.getProperty("");
 	}
 }

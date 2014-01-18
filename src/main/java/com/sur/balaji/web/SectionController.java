@@ -36,7 +36,8 @@ public class SectionController {
 
 	/* CRUD operation - Add the section */
 	@RequestMapping(value = "/sectionListByFiter", method = RequestMethod.POST)
-	public @ResponseBody JSONResult sectionListByFiter(@ModelAttribute("SpringWeb") Section section) {
+	public @ResponseBody
+	JSONResult sectionListByFiter(@ModelAttribute("SpringWeb") Section section) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("sectionListByFiter() filter - " + section);
@@ -53,7 +54,8 @@ public class SectionController {
 	}
 
 	@RequestMapping(value = "/createSection", method = RequestMethod.POST)
-	public @ResponseBody JSONResult addSection(@ModelAttribute("SpringWeb") Section section) {
+	public @ResponseBody
+	JSONResult addSection(@ModelAttribute("SpringWeb") Section section) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("add section - " + section);
@@ -70,13 +72,14 @@ public class SectionController {
 	}
 
 	@RequestMapping(value = "/updateSection", method = RequestMethod.POST)
-	public @ResponseBody JSONResult updateSection(@ModelAttribute("SpringWeb") Section section) {
+	public @ResponseBody
+	JSONResult updateSection(@ModelAttribute("SpringWeb") Section section) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("update section - " + section);
 			Section updatedRecord = sectionHome.merge(section);
 			jsonResult.setResult(Response.OK);
-			//jsonResult.setRecord(updatedRecord);
+			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateSection() error: " + ex);
 			jsonResult.setResult(Response.ERROR);
@@ -87,7 +90,8 @@ public class SectionController {
 	}
 
 	@RequestMapping(value = "/deleteSection", method = RequestMethod.POST)
-	public @ResponseBody JSONResult deleteSection(@ModelAttribute("SpringWeb") Section section) {
+	public @ResponseBody
+	JSONResult deleteSection(@ModelAttribute("SpringWeb") Section section) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete section - " + section);
@@ -102,17 +106,19 @@ public class SectionController {
 		logger.info("deleteSection() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "/sectionOptions", method = RequestMethod.POST)
-	public @ResponseBody JSONResult getSectionOptions() {
+	public @ResponseBody
+	JSONResult getSectionOptions() {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("getSectionOptions() fetching all sections");
 			Section section = new Section();
 			List<Section> sectionList = sectionHome.findByExample(section);
 			List<Option> options = new ArrayList<Option>();
-			for(Section dept : sectionList) {
-				Option option = new Option(dept.getSectionName(), dept.getSectionId());
+			for (Section dept : sectionList) {
+				Option option = new Option(dept.getSectionName(),
+						dept.getSectionId());
 				options.add(option);
 			}
 			jsonResult.setResult(Response.OK);
@@ -124,7 +130,7 @@ public class SectionController {
 		logger.info("getSectionOptions() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
 

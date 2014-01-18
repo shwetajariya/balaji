@@ -35,11 +35,14 @@ public class DepartmentController {
 
 	/* CRUD operation - Add the department */
 	@RequestMapping(value = "/departmentListByFiter", method = RequestMethod.POST)
-	public @ResponseBody JSONResult departmentListByFiter(@ModelAttribute("SpringWeb") Department department) {
+	public @ResponseBody
+	JSONResult departmentListByFiter(
+			@ModelAttribute("SpringWeb") Department department) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("departmentListByFiter() filter - " + department);
-			List<Department> departmentList = departmentHome.findByExample(department);
+			List<Department> departmentList = departmentHome
+					.findByExample(department);
 			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(departmentList);
 			jsonResult.setTotalRecordCount(departmentList.size());
@@ -52,7 +55,8 @@ public class DepartmentController {
 	}
 
 	@RequestMapping(value = "/createDepartment", method = RequestMethod.POST)
-	public @ResponseBody JSONResult addDepartment(@ModelAttribute("SpringWeb") Department department) {
+	public @ResponseBody
+	JSONResult addDepartment(@ModelAttribute("SpringWeb") Department department) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("add department - " + department);
@@ -69,13 +73,15 @@ public class DepartmentController {
 	}
 
 	@RequestMapping(value = "/updateDepartment", method = RequestMethod.POST)
-	public @ResponseBody JSONResult updateDepartment(@ModelAttribute("SpringWeb") Department department) {
+	public @ResponseBody
+	JSONResult updateDepartment(
+			@ModelAttribute("SpringWeb") Department department) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("update department - " + department);
 			Department updatedRecord = departmentHome.merge(department);
 			jsonResult.setResult(Response.OK);
-			//jsonResult.setRecord(updatedRecord);
+			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateDepartment() error: " + ex);
 			jsonResult.setResult(Response.ERROR);
@@ -86,11 +92,14 @@ public class DepartmentController {
 	}
 
 	@RequestMapping(value = "/deleteDepartment", method = RequestMethod.POST)
-	public @ResponseBody JSONResult deleteDepartment(@ModelAttribute("SpringWeb") Department department) {
+	public @ResponseBody
+	JSONResult deleteDepartment(
+			@ModelAttribute("SpringWeb") Department department) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete department - " + department);
-			Department record = departmentHome.findById(department.getDepartmentId());
+			Department record = departmentHome.findById(department
+					.getDepartmentId());
 			departmentHome.delete(record);
 			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
@@ -101,17 +110,20 @@ public class DepartmentController {
 		logger.info("deleteDepartment() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "/departmentOptions", method = RequestMethod.POST)
-	public @ResponseBody JSONResult getDepartmentOptions() {
+	public @ResponseBody
+	JSONResult getDepartmentOptions() {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("getDepartmentOptions() fetching all departments");
 			Department department = new Department();
-			List<Department> departmentList = departmentHome.findByExample(department);
+			List<Department> departmentList = departmentHome
+					.findByExample(department);
 			List<Option> options = new ArrayList<Option>();
-			for(Department dept : departmentList) {
-				Option option = new Option(dept.getDepartmentName(), dept.getDepartmentId());
+			for (Department dept : departmentList) {
+				Option option = new Option(dept.getDepartmentName(),
+						dept.getDepartmentId());
 				options.add(option);
 			}
 			jsonResult.setResult(Response.OK);
@@ -123,7 +135,7 @@ public class DepartmentController {
 		logger.info("getDepartmentOptions() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
 

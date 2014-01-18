@@ -10,13 +10,15 @@ public class SMSMessageEntry {
 	public String getSmsText() {
 		return smsText;
 	}
+
 	public void setSmsText(String smsText) {
 		this.smsText = smsText;
 	}
-	
+
 	public Contact getContact() {
 		return contact;
 	}
+
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
@@ -24,6 +26,7 @@ public class SMSMessageEntry {
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
+
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
@@ -31,15 +34,14 @@ public class SMSMessageEntry {
 	public int getStatus() {
 		return status;
 	}
+
 	public void setStatus(int status) {
 		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "SMSMessageEntry [smsText=" + smsText + 
-				", contact=" + contact + 
-				", mobileNumber=" + mobileNumber + 
-				", status=" + status + "]";
+		return "SMSMessageEntry [smsText=" + smsText + ", contact=" + contact
+				+ ", mobileNumber=" + mobileNumber + ", status=" + status + "]";
 	}
 }

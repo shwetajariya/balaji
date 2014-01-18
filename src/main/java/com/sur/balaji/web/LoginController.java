@@ -40,14 +40,13 @@ public class LoginController {
 			User queryParam = new User();
 			queryParam.setLoginName(user.getLoginName());
 			List<User> records = userHome.findByExample(queryParam);
-			if (null != records && records.size()>0) {
+			if (null != records && records.size() > 0) {
 				User record = records.get(0);
 				if (!(user.getPassword().equals(record.getPassword()))) {
 					user = null;
 					logger.info("Password didn't match");
 					throw new Exception("Password didn't match.");
-				}
-				else{
+				} else {
 					session.setAttribute("loggedin_user", user);
 					model.addAttribute("status", Response.OK);
 					return HOME_VIEW;

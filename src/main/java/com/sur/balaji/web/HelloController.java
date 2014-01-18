@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/hello")
 public class HelloController {
 
-    protected final Log logger = LogFactory.getLog(getClass());
+	protected final Log logger = LogFactory.getLog(getClass());
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getMovie(ModelMap model) {
- 
+
 		model.addAttribute("msg", "Welcome Page#123");
 		return "hello";
- 
+
 	}
 }

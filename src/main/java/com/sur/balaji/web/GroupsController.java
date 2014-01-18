@@ -36,7 +36,8 @@ public class GroupsController {
 
 	/* CRUD operation - Add the groups */
 	@RequestMapping(value = "/groupsListByFiter", method = RequestMethod.POST)
-	public @ResponseBody JSONResult groupsListByFiter(@ModelAttribute("SpringWeb") Groups groups) {
+	public @ResponseBody
+	JSONResult groupsListByFiter(@ModelAttribute("SpringWeb") Groups groups) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("groupsListByFiter() filter - " + groups);
@@ -53,7 +54,8 @@ public class GroupsController {
 	}
 
 	@RequestMapping(value = "/groupsList", method = RequestMethod.GET)
-	public @ResponseBody List<Groups> getGroupsList() {
+	public @ResponseBody
+	List<Groups> getGroupsList() {
 		List<Groups> groupsList;
 		try {
 			Groups groups = new Groups();
@@ -66,9 +68,10 @@ public class GroupsController {
 		logger.info("groupsListByFiter() returning " + groupsList);
 		return groupsList;
 	}
-	
+
 	@RequestMapping(value = "/createGroups", method = RequestMethod.POST)
-	public @ResponseBody JSONResult addGroups(@ModelAttribute("SpringWeb") Groups groups) {
+	public @ResponseBody
+	JSONResult addGroups(@ModelAttribute("SpringWeb") Groups groups) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("add groups - " + groups);
@@ -85,13 +88,14 @@ public class GroupsController {
 	}
 
 	@RequestMapping(value = "/updateGroups", method = RequestMethod.POST)
-	public @ResponseBody JSONResult updateGroups(@ModelAttribute("SpringWeb") Groups groups) {
+	public @ResponseBody
+	JSONResult updateGroups(@ModelAttribute("SpringWeb") Groups groups) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("update groups - " + groups);
 			Groups updatedRecord = groupsHome.merge(groups);
 			jsonResult.setResult(Response.OK);
-			//jsonResult.setRecord(updatedRecord);
+			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateGroups() error: " + ex);
 			jsonResult.setResult(Response.ERROR);
@@ -102,7 +106,8 @@ public class GroupsController {
 	}
 
 	@RequestMapping(value = "/deleteGroups", method = RequestMethod.POST)
-	public @ResponseBody JSONResult deleteGroups(@ModelAttribute("SpringWeb") Groups groups) {
+	public @ResponseBody
+	JSONResult deleteGroups(@ModelAttribute("SpringWeb") Groups groups) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete groups - " + groups);
@@ -117,17 +122,19 @@ public class GroupsController {
 		logger.info("deleteGroups() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "/groupsOptions", method = RequestMethod.POST)
-	public @ResponseBody JSONResult getGroupsOptions() {
+	public @ResponseBody
+	JSONResult getGroupsOptions() {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("getGroupsOptions() fetching all groupss");
 			Groups groups = new Groups();
 			List<Groups> groupsList = groupsHome.findByExample(groups);
 			List<Option> options = new ArrayList<Option>();
-			for(Groups dept : groupsList) {
-				Option option = new Option(dept.getGroupName(), dept.getGroupId());
+			for (Groups dept : groupsList) {
+				Option option = new Option(dept.getGroupName(),
+						dept.getGroupId());
 				options.add(option);
 			}
 			jsonResult.setResult(Response.OK);
@@ -139,7 +146,7 @@ public class GroupsController {
 		logger.info("getGroupsOptions() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
 

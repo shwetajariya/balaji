@@ -35,7 +35,8 @@ public class CompanyController {
 
 	/* CRUD operation - Add the company */
 	@RequestMapping(value = "/companyListByFiter", method = RequestMethod.POST)
-	public @ResponseBody JSONResult companyListByFiter(@ModelAttribute("SpringWeb") Company company) {
+	public @ResponseBody
+	JSONResult companyListByFiter(@ModelAttribute("SpringWeb") Company company) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("companyListByFiter() filter - " + company);
@@ -52,7 +53,8 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/createCompany", method = RequestMethod.POST)
-	public @ResponseBody JSONResult addCompany(@ModelAttribute("SpringWeb") Company company) {
+	public @ResponseBody
+	JSONResult addCompany(@ModelAttribute("SpringWeb") Company company) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("add company - " + company);
@@ -69,13 +71,14 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/updateCompany", method = RequestMethod.POST)
-	public @ResponseBody JSONResult updateCompany(@ModelAttribute("SpringWeb") Company company) {
+	public @ResponseBody
+	JSONResult updateCompany(@ModelAttribute("SpringWeb") Company company) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("update company - " + company);
 			Company updatedRecord = companyHome.merge(company);
 			jsonResult.setResult(Response.OK);
-			//jsonResult.setRecord(updatedRecord);
+			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateCompany() error: " + ex);
 			jsonResult.setResult(Response.ERROR);
@@ -86,7 +89,8 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/deleteCompany", method = RequestMethod.POST)
-	public @ResponseBody JSONResult deleteCompany(@ModelAttribute("SpringWeb") Company company) {
+	public @ResponseBody
+	JSONResult deleteCompany(@ModelAttribute("SpringWeb") Company company) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete company - " + company);
@@ -101,17 +105,19 @@ public class CompanyController {
 		logger.info("deleteCompany() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "/companyOptions", method = RequestMethod.POST)
-	public @ResponseBody JSONResult getCompanyOptions() {
+	public @ResponseBody
+	JSONResult getCompanyOptions() {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("getCompanyOptions() fetching all companys");
 			Company company = new Company();
 			List<Company> companyList = companyHome.findByExample(company);
 			List<Option> options = new ArrayList<Option>();
-			for(Company dept : companyList) {
-				Option option = new Option(dept.getCompanyName(), dept.getCompanyId());
+			for (Company dept : companyList) {
+				Option option = new Option(dept.getCompanyName(),
+						dept.getCompanyId());
 				options.add(option);
 			}
 			jsonResult.setResult(Response.OK);
@@ -123,7 +129,7 @@ public class CompanyController {
 		logger.info("getCompanyOptions() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
 

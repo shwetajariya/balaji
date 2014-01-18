@@ -26,17 +26,22 @@ public class ContactGroupMappingController {
 	private static final String VIEW = "contactGroupMapping";
 
 	@Autowired
-	public void setContactGroupMappingHome(ContactGroupMappingHome contactGroupMappingHome) {
+	public void setContactGroupMappingHome(
+			ContactGroupMappingHome contactGroupMappingHome) {
 		this.contactGroupMappingHome = contactGroupMappingHome;
 	}
 
 	/* CRUD operation - Add the contactGroupMapping */
 	@RequestMapping(value = "/contactGroupMappingListByFiter", method = RequestMethod.POST)
-	public @ResponseBody JSONResult contactGroupMappingListByFiter(@ModelAttribute("SpringWeb") ContactGroupMapping contactGroupMapping) {
+	public @ResponseBody
+	JSONResult contactGroupMappingListByFiter(
+			@ModelAttribute("SpringWeb") ContactGroupMapping contactGroupMapping) {
 		JSONResult jsonResult = new JSONResult();
 		try {
-			logger.info("contactGroupMappingListByFiter() filter - " + contactGroupMapping);
-			List<ContactGroupMapping> contactGroupMappingList = contactGroupMappingHome.findByExample(contactGroupMapping);
+			logger.info("contactGroupMappingListByFiter() filter - "
+					+ contactGroupMapping);
+			List<ContactGroupMapping> contactGroupMappingList = contactGroupMappingHome
+					.findByExample(contactGroupMapping);
 			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(contactGroupMappingList);
 			jsonResult.setTotalRecordCount(contactGroupMappingList.size());
@@ -49,7 +54,9 @@ public class ContactGroupMappingController {
 	}
 
 	@RequestMapping(value = "/createContactGroupMapping", method = RequestMethod.POST)
-	public @ResponseBody JSONResult addContactGroupMapping(@ModelAttribute("SpringWeb") ContactGroupMapping contactGroupMapping) {
+	public @ResponseBody
+	JSONResult addContactGroupMapping(
+			@ModelAttribute("SpringWeb") ContactGroupMapping contactGroupMapping) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("add contactGroupMapping - " + contactGroupMapping);
@@ -66,13 +73,16 @@ public class ContactGroupMappingController {
 	}
 
 	@RequestMapping(value = "/updateContactGroupMapping", method = RequestMethod.POST)
-	public @ResponseBody JSONResult updateContactGroupMapping(@ModelAttribute("SpringWeb") ContactGroupMapping contactGroupMapping) {
+	public @ResponseBody
+	JSONResult updateContactGroupMapping(
+			@ModelAttribute("SpringWeb") ContactGroupMapping contactGroupMapping) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("update contactGroupMapping - " + contactGroupMapping);
-			ContactGroupMapping updatedRecord = contactGroupMappingHome.merge(contactGroupMapping);
+			ContactGroupMapping updatedRecord = contactGroupMappingHome
+					.merge(contactGroupMapping);
 			jsonResult.setResult(Response.OK);
-			//jsonResult.setRecord(updatedRecord);
+			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateContactGroupMapping() error: " + ex);
 			jsonResult.setResult(Response.ERROR);
@@ -83,11 +93,14 @@ public class ContactGroupMappingController {
 	}
 
 	@RequestMapping(value = "/deleteContactGroupMapping", method = RequestMethod.POST)
-	public @ResponseBody JSONResult deleteContactGroupMapping(@ModelAttribute("SpringWeb") ContactGroupMapping contactGroupMapping) {
+	public @ResponseBody
+	JSONResult deleteContactGroupMapping(
+			@ModelAttribute("SpringWeb") ContactGroupMapping contactGroupMapping) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete contactGroupMapping - " + contactGroupMapping);
-			ContactGroupMapping record = contactGroupMappingHome.findById(contactGroupMapping.getId());
+			ContactGroupMapping record = contactGroupMappingHome
+					.findById(contactGroupMapping.getId());
 			contactGroupMappingHome.delete(record);
 			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
@@ -98,7 +111,7 @@ public class ContactGroupMappingController {
 		logger.info("deleteContactGroupMapping() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
 

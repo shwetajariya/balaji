@@ -36,7 +36,7 @@ public class SMSMessageController {
 	public void setContactHome(ContactHome contactHome) {
 		this.contactHome = contactHome;
 	}
-	
+
 	@Autowired
 	public void setGroupsHome(GroupsHome groupsHome) {
 		this.groupsHome = groupsHome;
@@ -46,12 +46,11 @@ public class SMSMessageController {
 	public void setSMSService(SMSEnqueueService smsService) {
 		this.smsService = smsService;
 	}
-	
+
 	@Autowired
 	public void setMessageTemplateHome(MessageTemplateHome messageTemplateHome) {
 		this.messageTemplateHome = messageTemplateHome;
 	}
-
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
@@ -59,22 +58,25 @@ public class SMSMessageController {
 		log.info("get method called...");
 		List<Contact> contactList = contactHome.findByExample(new Contact());
 		List<Groups> groupsList = groupsHome.findByExample(new Groups());
-		List<MessageTemplate> messageTemplateList = messageTemplateHome.findByExample(new MessageTemplate());
+		List<MessageTemplate> messageTemplateList = messageTemplateHome
+				.findByExample(new MessageTemplate());
 		model.addAttribute("contacts", contactList);
 		model.addAttribute("groups", groupsList);
 		model.addAttribute("templates", messageTemplateList);
 		model.addAttribute("status", Response.OK);
 		return VIEW;
 	}
-	
+
 	@RequestMapping(value = "/sendSMSMessage", method = RequestMethod.POST)
-	public String sendSMSMessage(@ModelAttribute("SpringWeb") SMSMessage smsMessage,
-			ModelMap model) {
-		try{
-			log.info("sendSMSMessage method called..., smsMessage=" + smsMessage);
+	public String sendSMSMessage(
+			@ModelAttribute("SpringWeb") SMSMessage smsMessage, ModelMap model) {
+		try {
+			log.info("sendSMSMessage method called..., smsMessage="
+					+ smsMessage);
 			smsService.sendSMSMessage(smsMessage);
-			model.addAttribute("message", "The message has been added to the send queue.");
-		}catch (Exception ex) {
+			model.addAttribute("message",
+					"The message has been added to the send queue.");
+		} catch (Exception ex) {
 			model.addAttribute(Response.ERROR, ex.getMessage());
 		}
 		return get(model);

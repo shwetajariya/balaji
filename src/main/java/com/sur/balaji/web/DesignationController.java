@@ -36,11 +36,14 @@ public class DesignationController {
 
 	/* CRUD operation - Add the designation */
 	@RequestMapping(value = "/designationListByFiter", method = RequestMethod.POST)
-	public @ResponseBody JSONResult designationListByFiter(@ModelAttribute("SpringWeb") Designation designation) {
+	public @ResponseBody
+	JSONResult designationListByFiter(
+			@ModelAttribute("SpringWeb") Designation designation) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("designationListByFiter() filter - " + designation);
-			List<Designation> designationList = designationHome.findByExample(designation);
+			List<Designation> designationList = designationHome
+					.findByExample(designation);
 			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(designationList);
 			jsonResult.setTotalRecordCount(designationList.size());
@@ -53,7 +56,9 @@ public class DesignationController {
 	}
 
 	@RequestMapping(value = "/createDesignation", method = RequestMethod.POST)
-	public @ResponseBody JSONResult addDesignation(@ModelAttribute("SpringWeb") Designation designation) {
+	public @ResponseBody
+	JSONResult addDesignation(
+			@ModelAttribute("SpringWeb") Designation designation) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("add designation - " + designation);
@@ -70,13 +75,15 @@ public class DesignationController {
 	}
 
 	@RequestMapping(value = "/updateDesignation", method = RequestMethod.POST)
-	public @ResponseBody JSONResult updateDesignation(@ModelAttribute("SpringWeb") Designation designation) {
+	public @ResponseBody
+	JSONResult updateDesignation(
+			@ModelAttribute("SpringWeb") Designation designation) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("update designation - " + designation);
 			Designation updatedRecord = designationHome.merge(designation);
 			jsonResult.setResult(Response.OK);
-			//jsonResult.setRecord(updatedRecord);
+			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateDesignation() error: " + ex);
 			jsonResult.setResult(Response.ERROR);
@@ -87,11 +94,14 @@ public class DesignationController {
 	}
 
 	@RequestMapping(value = "/deleteDesignation", method = RequestMethod.POST)
-	public @ResponseBody JSONResult deleteDesignation(@ModelAttribute("SpringWeb") Designation designation) {
+	public @ResponseBody
+	JSONResult deleteDesignation(
+			@ModelAttribute("SpringWeb") Designation designation) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete designation - " + designation);
-			Designation record = designationHome.findById(designation.getDesignationId());
+			Designation record = designationHome.findById(designation
+					.getDesignationId());
 			designationHome.delete(record);
 			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
@@ -102,17 +112,20 @@ public class DesignationController {
 		logger.info("deleteDesignation() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "/designationOptions", method = RequestMethod.POST)
-	public @ResponseBody JSONResult getDesignationOptions() {
+	public @ResponseBody
+	JSONResult getDesignationOptions() {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("getDesignationOptions() fetching all designations");
 			Designation designation = new Designation();
-			List<Designation> designationList = designationHome.findByExample(designation);
+			List<Designation> designationList = designationHome
+					.findByExample(designation);
 			List<Option> options = new ArrayList<Option>();
-			for(Designation dept : designationList) {
-				Option option = new Option(dept.getDesignation(), dept.getDesignationId());
+			for (Designation dept : designationList) {
+				Option option = new Option(dept.getDesignation(),
+						dept.getDesignationId());
 				options.add(option);
 			}
 			jsonResult.setResult(Response.OK);
@@ -124,7 +137,7 @@ public class DesignationController {
 		logger.info("getDesignationOptions() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
 

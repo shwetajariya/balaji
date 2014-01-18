@@ -112,7 +112,7 @@ public class UserController {
 		model.addAttribute("message", Response.OK);
 		return VIEW;
 	}
-	
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String getHome(ModelMap model) {
 

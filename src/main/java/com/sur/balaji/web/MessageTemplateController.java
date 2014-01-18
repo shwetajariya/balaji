@@ -32,11 +32,15 @@ public class MessageTemplateController {
 
 	/* CRUD operation - Add the messageTemplate */
 	@RequestMapping(value = "/messageTemplateListByFiter", method = RequestMethod.POST)
-	public @ResponseBody JSONResult messageTemplateListByFiter(@ModelAttribute("SpringWeb") MessageTemplate messageTemplate) {
+	public @ResponseBody
+	JSONResult messageTemplateListByFiter(
+			@ModelAttribute("SpringWeb") MessageTemplate messageTemplate) {
 		JSONResult jsonResult = new JSONResult();
 		try {
-			logger.info("messageTemplateListByFiter() filter - " + messageTemplate);
-			List<MessageTemplate> messageTemplateList = messageTemplateHome.findByExample(messageTemplate);
+			logger.info("messageTemplateListByFiter() filter - "
+					+ messageTemplate);
+			List<MessageTemplate> messageTemplateList = messageTemplateHome
+					.findByExample(messageTemplate);
 			jsonResult.setResult(Response.OK);
 			jsonResult.setRecords(messageTemplateList);
 			jsonResult.setTotalRecordCount(messageTemplateList.size());
@@ -49,7 +53,9 @@ public class MessageTemplateController {
 	}
 
 	@RequestMapping(value = "/createMessageTemplate", method = RequestMethod.POST)
-	public @ResponseBody JSONResult addMessageTemplate(@ModelAttribute("SpringWeb") MessageTemplate messageTemplate) {
+	public @ResponseBody
+	JSONResult addMessageTemplate(
+			@ModelAttribute("SpringWeb") MessageTemplate messageTemplate) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("add messageTemplate - " + messageTemplate);
@@ -66,13 +72,16 @@ public class MessageTemplateController {
 	}
 
 	@RequestMapping(value = "/updateMessageTemplate", method = RequestMethod.POST)
-	public @ResponseBody JSONResult updateMessageTemplate(@ModelAttribute("SpringWeb") MessageTemplate messageTemplate) {
+	public @ResponseBody
+	JSONResult updateMessageTemplate(
+			@ModelAttribute("SpringWeb") MessageTemplate messageTemplate) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("update messageTemplate - " + messageTemplate);
-			MessageTemplate updatedRecord = messageTemplateHome.merge(messageTemplate);
+			MessageTemplate updatedRecord = messageTemplateHome
+					.merge(messageTemplate);
 			jsonResult.setResult(Response.OK);
-			//jsonResult.setRecord(updatedRecord);
+			// jsonResult.setRecord(updatedRecord);
 		} catch (Exception ex) {
 			logger.info("updateMessageTemplate() error: " + ex);
 			jsonResult.setResult(Response.ERROR);
@@ -83,11 +92,14 @@ public class MessageTemplateController {
 	}
 
 	@RequestMapping(value = "/deleteMessageTemplate", method = RequestMethod.POST)
-	public @ResponseBody JSONResult deleteMessageTemplate(@ModelAttribute("SpringWeb") MessageTemplate messageTemplate) {
+	public @ResponseBody
+	JSONResult deleteMessageTemplate(
+			@ModelAttribute("SpringWeb") MessageTemplate messageTemplate) {
 		JSONResult jsonResult = new JSONResult();
 		try {
 			logger.info("delete messageTemplate - " + messageTemplate);
-			MessageTemplate record = messageTemplateHome.findById(messageTemplate.getTemplateId());
+			MessageTemplate record = messageTemplateHome
+					.findById(messageTemplate.getTemplateId());
 			messageTemplateHome.delete(record);
 			jsonResult.setResult(Response.OK);
 		} catch (Exception ex) {
@@ -98,7 +110,7 @@ public class MessageTemplateController {
 		logger.info("deleteMessageTemplate() returning " + jsonResult);
 		return jsonResult;
 	}
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String get(ModelMap model) {
 

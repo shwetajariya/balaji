@@ -1,4 +1,5 @@
 package com.sur.balaji.model;
+
 // Generated 7 Oct, 2013 7:45:53 PM by Hibernate Tools 4.0.0
 
 import java.util.Date;
@@ -14,99 +15,109 @@ public class User extends ModelBase implements java.io.Serializable {
 
 	private static final long serialVersionUID = -1371477746677595585L;
 	private Long userId;
-     private String loginName;
-     private String firstName;
-     private String lastName;
-     private String password;
-     private String emailAddress;
-     private Date lastLogin;
-     @JsonIgnore
-     private Set<Contact> contacts = new HashSet<Contact>(0);
-     @JsonIgnore
-     private Set<MessageLog> messageLogs = new HashSet<MessageLog>(0);
+	private String loginName;
+	private String firstName;
+	private String lastName;
+	private String password;
+	private String emailAddress;
+	private Date lastLogin;
+	@JsonIgnore
+	private Set<Contact> contacts = new HashSet<Contact>(0);
+	@JsonIgnore
+	private Set<MessageLog> messageLogs = new HashSet<MessageLog>(0);
 
-    public User() {
-    }
+	public User() {
+	}
 
-	
-    public User(String loginName, Date lastLogin) {
-        this.loginName = loginName;
-        this.lastLogin = lastLogin;
-    }
-    public User(String loginName, String firstName, String lastName, String password, String emailAddress, Date lastLogin, Set<Contact> contacts, Set<MessageLog> messageLogs) {
-       this.loginName = loginName;
-       this.firstName = firstName;
-       this.lastName = lastName;
-       this.password = password;
-       this.emailAddress = emailAddress;
-       this.lastLogin = lastLogin;
-       this.contacts = contacts;
-       this.messageLogs = messageLogs;
-    }
-   
-    public Long getUserId() {
-        return this.userId;
-    }
-    
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-    public String getLoginName() {
-        return this.loginName;
-    }
-    
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }
-    public String getFirstName() {
-        return this.firstName;
-    }
-    
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public String getLastName() {
-        return this.lastName;
-    }
-    
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public String getPassword() {
-        return this.password;
-    }
-    
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public String getEmailAddress() {
-        return this.emailAddress;
-    }
-    
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-    public Date getLastLogin() {
-        return this.lastLogin;
-    }
-    
-    public void setLastLogin(Date lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-    public Set<Contact> getContacts() {
-        return this.contacts;
-    }
-    
-    public void setContacts(Set<Contact> contacts) {
-        this.contacts = contacts;
-    }
-    public Set<MessageLog> getMessageLogs() {
-        return this.messageLogs;
-    }
-    
-    public void setMessageLogs(Set<MessageLog> messageLogs) {
-        this.messageLogs = messageLogs;
-    }
+	public User(String loginName, Date lastLogin) {
+		this.loginName = loginName;
+		this.lastLogin = lastLogin;
+	}
+
+	public User(String loginName, String firstName, String lastName,
+			String password, String emailAddress, Date lastLogin,
+			Set<Contact> contacts, Set<MessageLog> messageLogs) {
+		this.loginName = loginName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.emailAddress = emailAddress;
+		this.lastLogin = lastLogin;
+		this.contacts = contacts;
+		this.messageLogs = messageLogs;
+	}
+
+	public Long getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public String getLoginName() {
+		return this.loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmailAddress() {
+		return this.emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public Date getLastLogin() {
+		return this.lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+	public Set<Contact> getContacts() {
+		return this.contacts;
+	}
+
+	public void setContacts(Set<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
+	public Set<MessageLog> getMessageLogs() {
+		return this.messageLogs;
+	}
+
+	public void setMessageLogs(Set<MessageLog> messageLogs) {
+		this.messageLogs = messageLogs;
+	}
 
 	@Override
 	public String toString() {
@@ -116,5 +127,3 @@ public class User extends ModelBase implements java.io.Serializable {
 				+ ", lastLogin=" + lastLogin + "]";
 	}
 }
-
-
