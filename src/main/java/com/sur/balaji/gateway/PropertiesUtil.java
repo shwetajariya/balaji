@@ -1,4 +1,4 @@
-package com.sur.sms.gateway.sms;
+package com.sur.balaji.gateway;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,18 +19,16 @@ public class PropertiesUtil extends PropertyPlaceholderConfigurer {
 			ConfigurableListableBeanFactory beanFactory, Properties props)
 			throws BeansException {
 		super.processProperties(beanFactory, props);
-		System.out.println("file entry = " + props.propertyNames());
 
 		propertiesMap = new HashMap<String, String>();
 		for (Object key : props.keySet()) {
 			String keyStr = key.toString();
-			System.out.println(" key= " + keyStr);
 			propertiesMap.put(
 					keyStr,
 					parseStringValue(props.getProperty(keyStr), props,
 							new HashSet()));
 		}
-		System.out.println(" end for loop= ");
+		System.out.println(" Loaded properties: " + propertiesMap);
 	}
 
 	public static String getProperty(String name) {

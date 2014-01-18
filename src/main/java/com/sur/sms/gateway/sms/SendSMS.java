@@ -42,8 +42,7 @@ public class SendSMS {
 		System.out.println("Send message from a serial gsm modem.");
 		System.out.println(Library.getLibraryDescription());
 		System.out.println("Version: " + Library.getLibraryVersion());
-		SerialModemGateway gateway = new SerialModemGateway("modem.com1", port,
-				bitrate, modem, "");
+		SerialModemGateway gateway = new SerialModemGateway("modem.com1", port,	bitrate, modem, "");
 		gateway.setInbound(true);
 		gateway.setOutbound(true);
 		gateway.setSimPin(modemPin);

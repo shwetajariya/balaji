@@ -11,12 +11,13 @@ import org.springframework.util.StringUtils;
 
 import com.sur.balaji.dao.ContactHome;
 import com.sur.balaji.dao.GroupsHome;
+import com.sur.balaji.gateway.ModemGatewayService;
 import com.sur.balaji.model.Contact;
 import com.sur.balaji.model.ContactGroupMapping;
 import com.sur.balaji.model.Groups;
 import com.sur.balaji.model.SMSMessage;
 import com.sur.balaji.model.SMSMessageEntry;
-import com.sur.balaji.service.sms.SMSDeliveryService;
+import com.sur.balaji.service.sms.ExecutorService;
 import com.sur.balaji.service.sms.SMSPushTask;
 
 @Service
@@ -25,7 +26,8 @@ public class SMSEnqueueService {
 	protected final Log log = LogFactory.getLog(SMSEnqueueService.class);
 	private GroupsHome groupsHome;
 	private ContactHome contactHome;
-	private SMSDeliveryService deliveryService;
+	private ExecutorService executorService;
+	private ModemGatewayService gatewayService;
 
 	@Autowired
 	public void setGroupsHome(GroupsHome groupsHome) {
@@ -38,8 +40,13 @@ public class SMSEnqueueService {
 	}
 
 	@Autowired
-	public void setSMSDeliveryService(SMSDeliveryService deliveryService) {
-		this.deliveryService = deliveryService;
+	public void setSMSDeliveryService(ExecutorService deliveryService) {
+		this.executorService = deliveryService;
+	}
+	
+	@Autowired
+	public void setModemGatewayService(ModemGatewayService gatewayService){
+		this.gatewayService = gatewayService;
 	}
 
 	public void sendSMSMessage(SMSMessage smsMessage) {
@@ -52,8 +59,8 @@ public class SMSEnqueueService {
 				smsMessageEntry.setContact(contact);
 				smsMessageEntry.setSmsText(smsMessage.getMessageText());
 
-				SMSPushTask smsTask = new SMSPushTask(smsMessageEntry);
-				deliveryService.execute(smsTask);
+				SMSPushTask smsTask = new SMSPushTask(smsMessageEntry, gatewayService);
+				executorService.execute(smsTask);
 			}
 
 			for (String number : numbers) {
@@ -61,8 +68,8 @@ public class SMSEnqueueService {
 				smsMessageEntry.setMobileNumber(number);
 				smsMessageEntry.setSmsText(smsMessage.getMessageText());
 
-				SMSPushTask smsTask = new SMSPushTask(smsMessageEntry);
-				deliveryService.execute(smsTask);
+				SMSPushTask smsTask = new SMSPushTask(smsMessageEntry, gatewayService);
+				executorService.execute(smsTask);
 			}
 		} catch (Exception ex) {
 			log.error("sendSMSMessage() - " + ex.getMessage());

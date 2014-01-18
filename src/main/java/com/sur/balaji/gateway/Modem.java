@@ -1,4 +1,4 @@
-package com.sur.sms.gateway.sms;
+package com.sur.balaji.gateway;
 
 public class Modem {
 

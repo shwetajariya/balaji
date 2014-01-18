@@ -9,15 +9,20 @@ import org.smslib.SMSLibException;
 import org.smslib.Service;
 import org.smslib.TimeoutException;
 
+import com.sur.balaji.gateway.Constent;
+import com.sur.balaji.gateway.Modem;
+import com.sur.balaji.gateway.ModemGatewayService;
+import com.sur.balaji.gateway.PropertiesUtil;
+
 public class ModemConfiguration {
 
-	public static List<ModemGateway> listModemGetway;
+	public static List<ModemGatewayService> listModemGetway;
 
-	static {
-		listModemGetway = new ArrayList<ModemGateway>();
+	public void configure() {
+		listModemGetway = new ArrayList<ModemGatewayService>();
 		int totalModem = Integer.parseInt(PropertiesUtil
 				.getProperty(Constent.totalModem));
-		listModemGetway = new ArrayList<ModemGateway>();
+		listModemGetway = new ArrayList<ModemGatewayService>();
 		for (int i = 1; i <= totalModem; i++) {
 			Modem modem = new Modem();
 			modem.setPort(PropertiesUtil.getProperty(Constent.totalModem + i));
@@ -28,12 +33,11 @@ public class ModemConfiguration {
 			modem.setModemPin(PropertiesUtil
 					.getProperty(Constent.prefixModemPin + i));
 			modem.setSmsc(PropertiesUtil.getProperty(Constent.prefixSMSC + i));
-			ModemGateway modemGateway = new ModemGateway();
+			ModemGatewayService modemGateway = new ModemGatewayService();
 			try {
 				modemGateway.addGateway(modem);
 				listModemGetway.add(modemGateway);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

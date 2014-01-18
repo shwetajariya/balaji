@@ -50,7 +50,7 @@
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/image/**" location="/image/" />
 
-	<bean id="propertyConfigurer" class="com.sur.sms.gateway.sms.PropertiesUtil">
+	<bean id="propertyConfigurer" class="com.sur.balaji.gateway.PropertiesUtil">
 		<property name="locations">
 			<list>
 				<value>classpath:modem.properties</value>

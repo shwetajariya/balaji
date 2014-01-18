@@ -10,12 +10,12 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SMSDeliveryService {
+public class ExecutorService {
 
 	private ThreadPoolExecutor threadPool;
-	protected final Log log = LogFactory.getLog(SMSDeliveryService.class);
+	protected final Log log = LogFactory.getLog(ExecutorService.class);
 
-	public SMSDeliveryService() {
+	public ExecutorService() {
 		threadPool = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
 	}
 
