@@ -82,7 +82,7 @@
 			</ul>
 			<ul id="feed">
 				<li><a href="#">Change header page</a></li>
-				<li><a href="#">Sing Out</a></li>
+				<li><a href="<c:url value="/login/logoutUser" />">Sing Out</a></li>
 			</ul>
 		</div>
 

@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Bharat Oman Refineries Limited Bina</title>
 
-<link href="./css/login-box.css" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/css/login-box.css" />" rel="stylesheet"
+	type="text/css" />
 <!-- <div id="headerRendererDiv1"
 	style="background-color: #dd4814; text-align: center;">
 	<h1 style="margin-bottom: 0;">Bharat Oman Refineries Limited Bina</h1>

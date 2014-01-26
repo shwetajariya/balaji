@@ -70,4 +70,21 @@ public class LoginController {
 		model.addAttribute("status", Response.OK);
 		return VIEW;
 	}
+
+	@RequestMapping(value = "/logoutUser", method = RequestMethod.GET)
+	public String signOut(HttpSession session, ModelMap model) {
+		try {
+			User user = (User) session.getAttribute("loggedin_user");
+			if (user != null) {
+				logger.info("login user - " + user.getFirstName());
+				session.invalidate();
+			}
+
+		} catch (Exception ex) {
+			logger.info("logoutUser() error: " + ex);
+			model.addAttribute("status", Response.ERROR);
+			model.addAttribute("message", ex.getMessage());
+		}
+		return VIEW;
+	}
 }
