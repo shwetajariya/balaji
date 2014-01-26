@@ -14,6 +14,8 @@ import org.smslib.Service;
 import org.smslib.TimeoutException;
 import org.smslib.modem.SerialModemGateway;
 
+import com.sur.balaji.model.SMSMessageEntry;
+
 @org.springframework.stereotype.Service
 public class ModemGatewayService {
 
@@ -29,7 +31,7 @@ public class ModemGatewayService {
 		for (int i = 1; i <= totalModem; i++) {
 			try {
 				Modem modem = new Modem();
-				modem.setPort(PropertiesUtil.getProperty(Constent.totalModem + i));
+				modem.setPort(PropertiesUtil.getProperty(Constent.prefixModemPort + i));
 				modem.setBitrate(Integer.parseInt(PropertiesUtil.getProperty(Constent.prefixBitRate + i)));
 				modem.setModemName(PropertiesUtil.getProperty(Constent.prefixModemName + i));
 				modem.setModemPin(PropertiesUtil.getProperty(Constent.prefixModemPin + i));
@@ -56,6 +58,18 @@ public class ModemGatewayService {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		try{
+			log.info("Modem Information:");
+			log.info("  Manufacturer: " + gateway.getManufacturer());
+			log.info("  Model: " + gateway.getModel());
+			log.info("  Serial No: " + gateway.getSerialNo());
+			log.info("  SIM IMSI: " + gateway.getImsi());
+			log.info("  Signal Level: " + gateway.getSignalLevel());
+			log.info("  Battery Level: " + gateway.getBatteryLevel());
+		} catch (Exception ex) {
+			log.warn("Error while configuring modem: ", ex);
+		}
 	}
 
 	public void startService() throws TimeoutException, GatewayException, SMSLibException, IOException,
@@ -79,24 +93,17 @@ public class ModemGatewayService {
 		
 		Service.getInstance().setOutboundMessageNotification(outboundNotification);
 		Service.getInstance().addGateway(gateway);
-
-		try{
-			log.info("Modem Information:");
-			log.info("  Manufacturer: " + gateway.getManufacturer());
-			log.info("  Model: " + gateway.getModel());
-			log.info("  Serial No: " + gateway.getSerialNo());
-			log.info("  SIM IMSI: " + gateway.getImsi());
-			log.info("  Signal Level: " + gateway.getSignalLevel());
-			log.info("  Battery Level: " + gateway.getBatteryLevel());
-		} catch (Exception ex) {
-			log.warn("Error while configuring modem: ", ex);
-		}
 	}
 
-	public void sendSMS(String contact, String message) throws Exception {
+	public void sendSMS(SMSMessageEntry entry) throws Exception {
+		this.sendSMS(entry.getMobileNumberImpl(), entry.getSmsText());
+	}
+	
+	private void sendSMS(String contact, String message) throws Exception {
 		OutboundMessage msg = new OutboundMessage(contact, message);
-		Service.getInstance().getGateway(this.gateway.getGatewayId()).sendMessage(msg);
-		log.info(">> Sent message:" + msg);
+		//Service.getInstance().getGateway(this.gateway.getGatewayId()).sendMessage(msg);
+		Service.getInstance().queueMessage(msg);
+		log.info(">> Queued SMS message:" + msg);
 	}
 
 	class OutboundNotification implements IOutboundMessageNotification {
@@ -105,7 +112,7 @@ public class ModemGatewayService {
 
 		public void process(AGateway gateway, OutboundMessage msg) {
 			log.info("Outbound handler called from Gateway: " + gateway.getGatewayId());
-			log.info(msg);
+			log.info("SMS Delivery Report:- " + msg);
 		}
 	}
 }

@@ -26,7 +26,7 @@
 	                    list: false
 	                },
 	                departmentId: {
-	                    title: 'Department',
+	                    title: 'Dept.',
 	                    options: '<c:url value="/department/departmentOptions" />',
 	                    width: '23%'
 	                },
@@ -35,7 +35,7 @@
 	                    options: '<c:url value="/company/companyOptions" />'
 	                },
 	                designationId: {
-	                    title: 'Designation',
+	                    title: 'Desig.',
 	                    options: '<c:url value="/designation/designationOptions" />'
 	                },
 	                sectionId: {
@@ -43,7 +43,7 @@
 	                    options: '<c:url value="/section/sectionOptions" />'
 	                },
 	                employeeId: {
-	                    title: 'Employee Id'
+	                    title: 'Emp Id'
 	                },
 	                firstName: {
 	                    title: 'First Name'
@@ -54,18 +54,21 @@
 	                priority: {
 	                    title: 'Priority'
 	                },
-	                officePhoneNumber: {
-	                    title: 'Office Phone Number'
-	                },
 	                mobileNumber: {
 	                    title: 'Mobile Number'
 	                },
+	                officePhoneNumber: {
+	                    title: 'Office Phone Number',
+	                    list: false
+	                },
 	                residencePhoneNumber: {
-	                    title: 'Residence Phone Number'
+	                    title: 'Residence Phone Number',
+	                    list: false
 	                },
 	                emailAddress: {
 	                    title: 'Email Address',
-	                    type: 'email'
+	                    type: 'email',
+	                    list: false
 	                }
 	            }
 	        });

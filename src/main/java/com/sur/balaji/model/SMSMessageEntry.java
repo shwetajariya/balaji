@@ -1,5 +1,7 @@
 package com.sur.balaji.model;
 
+import org.springframework.util.StringUtils;
+
 public class SMSMessageEntry {
 
 	private String smsText;
@@ -37,6 +39,16 @@ public class SMSMessageEntry {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	
+	public String getMobileNumberImpl(){
+		String number = this.mobileNumber;
+		if(contact != null){
+			if(! StringUtils.isEmpty(contact.getMobileNumber())){
+				number = contact.getMobileNumber();
+			}
+		}
+		return number;
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public class SMSPushTask implements Runnable {
 
 		log.info("Sending SMS Message - " + smsMessageEntry);
 		try {
-			modemService.sendSMS(smsMessageEntry.getMobileNumber(), smsMessageEntry.getSmsText());
+			modemService.sendSMS(smsMessageEntry);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
