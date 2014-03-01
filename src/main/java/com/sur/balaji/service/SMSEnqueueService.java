@@ -58,6 +58,19 @@ public class SMSEnqueueService {
 				SMSMessageEntry smsMessageEntry = new SMSMessageEntry();
 				smsMessageEntry.setContact(contact);
 				smsMessageEntry.setSmsText(smsMessage.getMessageText());
+				// for testing using two modem now and i am sending message form
+				// alternate modem now send message
+				boolean test = true;
+				if (test) {
+					smsMessageEntry.setGatewayID(ModemGatewayService.gateway[0]
+							.getGatewayId());
+					test = false;
+				} else {
+					smsMessageEntry.setGatewayID(ModemGatewayService.gateway[1]
+							.getGatewayId());
+					test = true;
+				}
+
 
 				SMSPushTask smsTask = new SMSPushTask(smsMessageEntry, gatewayService);
 				executorService.execute(smsTask);

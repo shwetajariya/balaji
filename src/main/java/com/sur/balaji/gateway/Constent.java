@@ -8,5 +8,6 @@ public class Constent {
 	public static String prefixModemName = "modemname";
 	public static String prefixModemPin = "modempin";
 	public static String prefixSMSC = "SMSC";
+	public static String prefixGatewayName = "gateway";
 
 }

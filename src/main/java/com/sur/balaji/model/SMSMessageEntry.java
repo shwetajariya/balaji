@@ -8,6 +8,17 @@ public class SMSMessageEntry {
 	private String mobileNumber;
 	private Contact contact;
 	private int status;
+	private String gatewayID;
+	
+	
+
+	public String getGatewayID() {
+		return gatewayID;
+	}
+
+	public void setGatewayID(String gatewayID) {
+		this.gatewayID = gatewayID;
+	}
 
 	public String getSmsText() {
 		return smsText;

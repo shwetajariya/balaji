@@ -7,6 +7,15 @@ public class Modem {
 	private String modemName;
 	private String modemPin;
 	private String smsc;
+	private String gatewayName;
+
+	public String getGatewayName() {
+		return gatewayName;
+	}
+
+	public void setGatewayName(String gatewayName) {
+		this.gatewayName = gatewayName;
+	}
 
 	public String getPort() {
 		return port;

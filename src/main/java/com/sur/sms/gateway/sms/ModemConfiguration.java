@@ -35,7 +35,7 @@ public class ModemConfiguration {
 			modem.setSmsc(PropertiesUtil.getProperty(Constent.prefixSMSC + i));
 			ModemGatewayService modemGateway = new ModemGatewayService();
 			try {
-				modemGateway.addGateway(modem);
+				modemGateway.addGateway(modem,i-1);
 				listModemGetway.add(modemGateway);
 			} catch (Exception e) {
 				e.printStackTrace();
